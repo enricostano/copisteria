@@ -27,6 +27,11 @@
     <%= f.label :stop %><br />
     <%= f.date_select :stop %>
   </div>
+  <div class="field">
+    <%= f.fields_for :file_projects, :html => {:multipart => true} do |builder| %>
+      <%= render "fileprojects_fields", :f => builder %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
