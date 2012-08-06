@@ -7,7 +7,7 @@
 
 <p>
   <b>Institution:</b>
-  <%= @project.institution_id %>
+  <%= @project.institution.name %>
 </p>
 
 <p>
@@ -20,6 +20,19 @@
   <%= @project.stop %>
 </p>
 
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Path</th>
+  </tr>
+
+<% @project.file_projects.each do |file_project| %>
+  <tr>
+    <td><%= file_project.name %></td>
+    <td><a href="<%= file_project.file.url %>">download</a></td>
+  </tr>
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

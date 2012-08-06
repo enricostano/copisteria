@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     
-    3.times do
+    1.times do
       file_project = @project.file_projects.build
     end
     
