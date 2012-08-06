@@ -3,7 +3,9 @@
 one:
   name: MyString
   file_uid: MyString
+  project_id: 1
 
 two:
   name: MyString
   file_uid: MyString
+  project_id: 1
