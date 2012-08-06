@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  institution_id: 1
+  start: 2012-08-03
+  stop: 2012-08-03
+
+two:
+  name: MyString
+  institution_id: 1
+  start: 2012-08-03
+  stop: 2012-08-03
