@@ -1,9 +1,10 @@
 Copisteria2::Application.routes.draw do
-  get "user/index"
 
-  get "user/show"
+  get "users/index"
 
-  get "user/edit"
+  get "users/show"
+
+  get "users/edit"
 
   resources :file_projects
 
