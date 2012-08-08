@@ -1,13 +1,23 @@
 Copisteria2::Application.routes.draw do
+  get "user/index"
+
+  get "user/show"
+
+  get "user/edit"
+
   resources :file_projects
 
   resources :projects
 
   resources :institutions
 
-  devise_for :users
+  devise_for :users #, :controllers => { :registrations => "users" }
 
-  resources :users, :only => [:show, :index]
+  scope "/admin" do
+    resources :users
+  end
+
+  #resources :users, :only => [:show, :index]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
   validates :partitaiva, :length => { :is => 11 }
   validates :partitaiva, :cap, :numericality => { :only_integer => true }
   validates :partitaiva, :uniqueness => true
+  
+  has_and_belongs_to_many :roles
+  
+  def role?(role)
+      return !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
 end

@@ -1,6 +1,11 @@
 class ProjectsController < ApplicationController
-before_filter :authenticate_user!
+  load_and_authorize_resource
+  #before_filter :check_permissions, :only => [:index]
 
+  #def check_permissions
+  #  authorize! :index, @projects
+  #end
+  
   # GET /projects
   # GET /projects.json
   def index
