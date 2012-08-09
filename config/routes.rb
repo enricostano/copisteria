@@ -15,7 +15,7 @@ Copisteria2::Application.routes.draw do
   devise_for :users #, :controllers => { :registrations => "users" }
 
   scope "/admin" do
-    resources :users, :only => [:show, :index]
+    resources :users, :only => [:show, :index, :edit, :update]
   end
 
   #resources :users, :only => [:show, :index]
