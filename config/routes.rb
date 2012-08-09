@@ -1,11 +1,5 @@
 Copisteria2::Application.routes.draw do
 
-  get "users/index"
-
-  get "users/show"
-
-  get "users/edit"
-
   resources :file_projects
 
   resources :projects
@@ -15,7 +9,7 @@ Copisteria2::Application.routes.draw do
   devise_for :users #, :controllers => { :registrations => "users" }
 
   scope "/admin" do
-    resources :users, :only => [:show, :index, :edit, :update]
+    resources :users, :only => [:new, :show, :index, :edit, :update, :create]
   end
 
   #resources :users, :only => [:show, :index]

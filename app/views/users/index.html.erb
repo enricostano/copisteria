@@ -9,7 +9,9 @@
     <th>Address</th>
     <th>City</th>
     <th>CAP</th>
-    <th>Roles</th>
+    <% if current_user.role? :super_admin %>
+      <th>Roles</th>
+    <% end %>
   </tr>
 
 <% @users.each do |user| %>
@@ -21,11 +23,13 @@
     <td><%= user.address %></td>
     <td><%= user.city %></td>
     <td><%= user.cap %></td>
-    <td>
-      <% user.roles.each do |role| %>
-        <%= role.name %>
-      <% end %>
-    </td>
+    <% if current_user.role? :super_admin %>
+      <td>
+        <% user.roles.each do |role| %>
+          <%= role.name %>
+        <% end %>
+      </td>
+    <% end %>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -35,4 +39,4 @@
 
 <br />
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New User', new_user_path %>

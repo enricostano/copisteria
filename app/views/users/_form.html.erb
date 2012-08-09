@@ -15,16 +15,53 @@
     <%= f.label :email %><br />
     <%= f.email_field :email %>
   </div>
-
-  <div class="field">
-    <%= f.label :roles %><br />
-    <% @roles.each do |role| %>
-      <div>
-        <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
-        <%= role.name %>
-      </div>
-    <% end %>
+  
+  <div>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
   </div>
+
+  <div>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <div>
+    <%= f.label :partitaiva %><br />
+    <%= f.text_field :partitaiva %>
+  </div>
+
+  <div>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  
+  <div>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  
+  <div>
+    <%= f.label :cap %><br />
+    <%= f.text_field :cap %>
+  </div>
+
+  <div>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+  
+  <% if current_user.role? :super_admin %>
+    <div class="field">
+      <%= f.label :roles %><br />
+      <% @roles.each do |role| %>
+        <div>
+          <%= check_box_tag "user[role_ids][]", role.id, @user.roles.include?(role) %>
+          <%= role.name %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
