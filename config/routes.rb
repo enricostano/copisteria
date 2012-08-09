@@ -12,8 +12,6 @@ Copisteria2::Application.routes.draw do
     resources :users, :only => [:new, :show, :index, :edit, :update, :create]
   end
 
-  #resources :users, :only => [:show, :index]
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
