@@ -17,7 +17,7 @@ body {
 }
 
 #wrap {
-  width: 750px;
+  width: 900px;
   margin: 0 auto;
   background-color: white;
 }
@@ -26,6 +26,12 @@ body {
   background-color: black;
   color: white;
   padding: 5px;
+}
+
+#user_nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
 }
 
 #logo {
