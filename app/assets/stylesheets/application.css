@@ -11,3 +11,40 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  
+}
+
+#wrap {
+  width: 750px;
+  margin: 0 auto;
+  background-color: white;
+}
+
+#user_nav {
+  background-color: black;
+  color: white;
+}
+
+#logo {
+  float: left;
+}
+
+#user_management {
+  float: right;
+}
+
+#right_dashboard_column {
+  float:left;
+}
+
+#left_dashboard_column {
+  float: right;
+}
+
+#footer {
+  clear: both;
+  background: black;
+  color: white;
+}

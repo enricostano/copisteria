@@ -8,20 +8,29 @@
 </head>
 <body>
 
+<div id="wrap">
+
 <div id="user_nav">
-  <%= link_to "Dashboard", dashboard_path %>
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-  <% end %>
+  <div id="logo">
+    <%= link_to "Dashboard", dashboard_path %>
+  </div>
+  <div id="user_management">
+    <% if user_signed_in? %>
+      Signed in as <%= current_user.email %>. Not you?
+      <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+    <% end %>
+  </div>
+  <div class="clear">&nbsp;</div>
 </div>
 
 <%= yield %>
 
-<div class="footer">
-  <p>Stano S.a.s di Stano Rita &amp;C.</p>
+<div id="footer">
+  <div>Stano S.a.s di Stano Rita &amp;C.</div>
+</div>
+
 </div>
 
 </body>
