@@ -12,4 +12,8 @@ class Project < ActiveRecord::Base
     end
   end
   
+  def self.nextbyinstitution
+    projects = where('stop > ?', Date.today)
+    project_institutions = projects.group_by { |p| p.institution }
+  end
 end

@@ -1,7 +1,7 @@
 Copisteria2::Application.routes.draw do
 
   get "dashboard/index"
-
+  
   resources :file_projects
 
   resources :projects
