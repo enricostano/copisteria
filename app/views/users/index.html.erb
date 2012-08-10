@@ -17,7 +17,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= user.email %></td>
-    <td><%= user.created_at %></td>
+    <td><%= user.created_at.to_date %></td>
     <td><%= user.partitaiva %></td>
     <td><%= user.phone %></td>
     <td><%= user.address %></td>
