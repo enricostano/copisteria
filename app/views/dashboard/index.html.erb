@@ -1,4 +1,9 @@
 <div class="dashboard">
-  <%= render 'projects/nextbyinstitution' %>
+  <div class="projectsbyinstitution">
+    <h2>Progetti attivi</h2>
+    <%= render 'projects/nextbyinstitution' %>
+    <%= link_to 'Elenco progetti', projects_path %> |
+    <%= link_to 'Nuovo progetto', new_project_path %>
+  </div>
 </div>
 
