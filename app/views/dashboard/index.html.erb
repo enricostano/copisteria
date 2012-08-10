@@ -1,5 +1,5 @@
 <div id="right_dashboard_column">
-  <div id="projects_by_institution">
+  <div class="div_interno" id="projects_by_institution">
     <h2>Progetti attivi</h2>
     <%= render 'projects/nextbyinstitution' %>
     <%= link_to 'Elenco progetti', projects_path %> |
@@ -7,18 +7,19 @@
   </div>
 </div>
 <div id="left_dashboard_column">
-  <div id="latest_downloads">
-  data ora utente file<br/>
-  data ora utente file<br/>
-  data ora utente file<br/>
-  data ora utente file<br/>
-  data ora utente file<br/>
+  <div class="div_interno" id="latest_downloads">
+     <h2>Ultimi downloads</h2>
+     data ora utente file<br/>
+     data ora utente file<br/>
+     data ora utente file<br/>
+     data ora utente file<br/>
+     data ora utente file<br/>
   </div>
-  <div id="users_buttons">
+  <div class="div_interno" id="users_buttons">
     <%= link_to 'Elenco utenti', users_path %> |
     <%= link_to 'Nuovo utente', new_user_path %>
   </div>
-  <div id="institutions_buttons">
+  <div class="div_interno" id="institutions_buttons">
     <%= link_to 'Elenco enti', institutions_path %> |
     <%= link_to 'Nuovo ente', new_institution_path %>
   </div>

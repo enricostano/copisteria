@@ -25,6 +25,7 @@ body {
 #user_nav {
   background-color: black;
   color: white;
+  padding: 5px;
 }
 
 #logo {
@@ -36,10 +37,12 @@ body {
 }
 
 #right_dashboard_column {
+  width: 50%;
   float:left;
 }
 
 #left_dashboard_column {
+  width: 50%;
   float: right;
 }
 
@@ -47,4 +50,9 @@ body {
   clear: both;
   background: black;
   color: white;
+  padding: 5px;
+}
+
+div.div_interno {
+  padding: 5px;
 }
