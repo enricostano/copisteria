@@ -1,0 +1,41 @@
+<div id="left_splashpage_column">
+  <div class="div_interno" id="google_map" >
+
+    <div id="demoMap" style="height:250px" ></div>
+    <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+    <script>
+      map = new OpenLayers.Map("demoMap");
+      map.addLayer(new OpenLayers.Layer.OSM());
+      var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+      var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+      var position       = new OpenLayers.LonLat(17.63377,40.38834).transform( fromProjection, toProjection);
+      var zoom           = 13;
+      map.setCenter(position, zoom );
+      var markers = new OpenLayers.Layer.Markers( "Markers" );
+      map.addLayer(markers);
+      var size = new OpenLayers.Size(21,25);
+      var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+      var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+      markers.addMarker(new OpenLayers.Marker(position,icon));
+      markers.addMarker(new OpenLayers.Marker(position,icon.clone()));
+    </script>
+  </div>
+  <div class="div_interno" id="details">
+    <p>
+      <h3>Stano s.a.s. di Stano Rita &amp; C.</h3><br/>
+      Via Giovanni Falcone, pal A<br/>
+      Manduria (TA)<br/>
+      Tel./Fax 099/9711333<br/>
+      info@stanosas.it
+    </p>
+  </div>
+  <div class="div_interno" id="buttons">
+    Contattaci!
+  </div>
+</div>
+<div id="right_splashpage_column">
+  <div class="div_interno" id="user_login">
+     <%= render 'login' %>
+  </div>
+</div>
+
