@@ -20,21 +20,25 @@
   <%= @project.stop %>
 </p>
 
-<table>
-  <tr>
-    <th>Nome</th>
-    <th>Path</th>
-  </tr>
+<% if !@project.file_projects.empty? %>
+  <table>
+    <tr>
+      <th>Nome</th>
+      <th>Path</th>
+    </tr>
 
-<% @project.file_projects.each do |file_project| %>
-  <tr>
-    <td><%= file_project.name %></td>
-    <td><a href="<%= file_project.file.url %>">download</a></td>
-  </tr>
+    <% @project.file_projects.each do |file_project| %>
+      <tr>
+        <td><%= file_project.name %></td>
+        <td><a href="<%= file_project.file.url %>">download</a></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
-</table>
 
 <% if current_user.role? :super_admin || :admin %>
   <%= link_to 'Edit', edit_project_path(@project) %> |
   <%= link_to 'Elenco progetti', projects_path %>
+<% else %>
+  <%= button_to 'Aggiungi al carrello' %>
 <% end %>

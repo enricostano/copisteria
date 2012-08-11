@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :roles
   accepts_nested_attributes_for :roles
+  
+  has_many :carts
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
