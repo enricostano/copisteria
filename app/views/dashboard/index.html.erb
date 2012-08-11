@@ -2,26 +2,30 @@
   <div class="div_interno" id="projects_by_institution">
     <h2>Progetti attivi</h2>
     <%= render 'projects/nextbyinstitution' %>
-    <%= link_to 'Elenco progetti', projects_path %> |
-    <%= link_to 'Nuovo progetto', new_project_path %>
+    <% if current_user.role? :super_admin || :admin %>
+      <%= link_to 'Elenco progetti', projects_path %> |
+      <%= link_to 'Nuovo progetto', new_project_path %>
+    <% end %>
   </div>
 </div>
 <div id="right_dashboard_column">
-  <div class="div_interno" id="latest_downloads">
-     <h2>Ultimi downloads</h2>
-     data ora utente file<br/>
-     data ora utente file<br/>
-     data ora utente file<br/>
-     data ora utente file<br/>
-     data ora utente file<br/>
-  </div>
-  <div class="div_interno" id="users_buttons">
-    <%= link_to 'Elenco utenti', users_path %> |
-    <%= link_to 'Nuovo utente', new_user_path %>
-  </div>
-  <div class="div_interno" id="institutions_buttons">
-    <%= link_to 'Elenco enti', institutions_path %> |
-    <%= link_to 'Nuovo ente', new_institution_path %>
-  </div>
+  <% if current_user.role? :super_admin || :admin %>
+    <div class="div_interno" id="latest_downloads">
+       <h2>Ultimi downloads</h2>
+       data ora utente file<br/>
+       data ora utente file<br/>
+       data ora utente file<br/>
+       data ora utente file<br/>
+       data ora utente file<br/>
+    </div>
+    <div class="div_interno" id="users_buttons">
+      <%= link_to 'Elenco utenti', users_path %> |
+      <%= link_to 'Nuovo utente', new_user_path %>
+    </div>
+    <div class="div_interno" id="institutions_buttons">
+      <%= link_to 'Elenco enti', institutions_path %> |
+      <%= link_to 'Nuovo ente', new_institution_path %>
+    </div>
+  <% end %>
 </div>
 
