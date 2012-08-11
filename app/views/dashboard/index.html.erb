@@ -26,6 +26,11 @@
       <%= link_to 'Elenco enti', institutions_path %> |
       <%= link_to 'Nuovo ente', new_institution_path %>
     </div>
+  <% else %>
+    <div class="div_interno" id="user_cart">
+      <h2>I tuoi acquisti</h2>
+      render cart
+    </div>
   <% end %>
 </div>
 
