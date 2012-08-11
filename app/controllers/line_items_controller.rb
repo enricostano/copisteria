@@ -40,7 +40,9 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(params[:line_item])
+    @cart = Cart.new
+    project = Project.find(params[:project_id])
+    @line_item = @cart.add_project(project.id)
 
     respond_to do |format|
       if @line_item.save

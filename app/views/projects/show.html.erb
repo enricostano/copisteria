@@ -40,5 +40,5 @@
   <%= link_to 'Edit', edit_project_path(@project) %> |
   <%= link_to 'Elenco progetti', projects_path %>
 <% else %>
-  <%= button_to 'Aggiungi al carrello' %>
+  <%= button_to 'Aggiungi al carrello', line_items_path(:project_id => @project)  %>
 <% end %>
