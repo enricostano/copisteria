@@ -41,8 +41,10 @@ class LineItemsController < ApplicationController
   # POST /line_items.json
   def create
     @cart = Cart.new
+    @cart.save
     project = Project.find(params[:project_id])
     @line_item = @cart.add_project(project.id)
+    @line_item.cart = @cart
 
     respond_to do |format|
       if @line_item.save
