@@ -20,12 +20,14 @@
   <%= @user.city %>
 </p>
 
-<p>
-  <b>Roles:</b>
-  <% @user.roles.each do |role| %>
-    <%= role.name %>
-  <% end %>
-</p>
+<% if current_user.role? :super_admin %>
+  <p>
+    <b>Roles:</b>
+      <% @user.roles.each do |role| %>
+        <%= role.name %>
+      <% end %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

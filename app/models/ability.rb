@@ -10,7 +10,7 @@ class Ability
     end
     
     if user.role? :admin
-      can :index, User
+      can :manage, User
     end
     
     if user.role? :user
