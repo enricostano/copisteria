@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
   validates :partitaiva, :uniqueness => true
 
   def role?(role)
-      return !!self.roles.find_by_name(role.to_s.camelize)
+    return !!self.roles.find_by_name(role.to_s.camelize)
+  end
+
+  def any_role?(*roles)
+    return roles.any? { |r| self.roles.map(&:name).include?(r.to_s.camelize) }
   end
 
 end

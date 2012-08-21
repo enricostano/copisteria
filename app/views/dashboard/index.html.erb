@@ -2,14 +2,14 @@
   <div class="div_interno" id="projects_by_institution">
     <h2>Progetti attivi</h2>
     <%= render 'projects/nextbyinstitution' %>
-    <% if current_user.role? :super_admin || :admin %>
+    <% if current_user.any_role? :super_admin, :admin %>
       <%= link_to 'Elenco progetti', projects_path %> |
       <%= link_to 'Nuovo progetto', new_project_path %>
     <% end %>
   </div>
 </div>
 <div id="right_dashboard_column">
-  <% if current_user.role? :super_admin || :admin %>
+  <% if current_user.any_role? :super_admin, :admin %>
     <div class="div_interno" id="latest_downloads">
        <h2>Ultimi downloads</h2>
        data ora utente file<br/>
