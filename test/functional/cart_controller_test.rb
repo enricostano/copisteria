@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LineItemTest < ActiveSupport::TestCase
+class CartControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
