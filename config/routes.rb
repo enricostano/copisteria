@@ -2,6 +2,8 @@ Copisteria2::Application.routes.draw do
 
   match "dashboard" => "dashboard#index"
   
+  match "cart/:id" => "cart#add", :as => :cart
+
   resources :file_projects
 
   resources :projects
