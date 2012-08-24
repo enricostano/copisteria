@@ -20,6 +20,11 @@
   <%= @project.stop %>
 </p>
 
+<p>
+  <b>Prezzo:</b>
+  <%= number_to_currency(@project.price, :unit => "€") %>
+</p>
+
 <% if !@project.file_projects.empty? %>
   <table>
     <tr>

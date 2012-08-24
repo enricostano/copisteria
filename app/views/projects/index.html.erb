@@ -2,10 +2,11 @@
 
 <table>
   <tr>
-    <th>Institution</th>
-    <th>Name</th>
-    <th>Start</th>
-    <th>Stop</th>
+    <th>Ente</th>
+    <th>Nome</th>
+    <th>Inizio</th>
+    <th>Fine</th>
+    <th>Prezzo</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
     <td><%= project.name %></td>
     <td><%= project.start %></td>
     <td><%= project.stop %></td>
+    <td><%= number_to_currency(project.price, :unit => "€") %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
