@@ -1,36 +1,35 @@
-<h1>Your Cart</h1>
-
 <% if @cart.empty? %>
-    <p>Your Cart is empty.</p>
-<% end %>
+    <p>Il tuo carrello è vuoto.</p>
+<% else %>
 
-<% total = 0 %>
+  <% total = 0 %>
 	
-<table class="cart">
-    <tr>
-        <td class="legend">Progetto</td>
-        <td class="legend">Prezzo</td>
-        <td class="legend">Quantità</td>
-        <td class="legend">Totale</td>
-    </tr>
-	
-<% @cart.each do | id, quantity | %>
-    <% item = Project.find_by_id(id) %>
-    <tr>
-        <td class="title"><%= item.name %></td>
-        <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
-        <td class="quantity"><%= quantity %></td>
-        <td class="price"><%= number_to_currency((item.price * quantity), :unit => "€") %></td>
-    </tr>
-    <% total += item.price * quantity %>
-<% end %>
+  <table class="cart">
+      <tr>
+          <td class="legend">Progetto</td>
+          <td class="legend">Prezzo</td>
+          <td class="legend">Quantità</td>
+          <td class="legend">Totale</td>
+      </tr>
 
-    <tr>
-        <td colspan="3">
-            <div class="total">Total:</div>
-        </td>
-        <td>
-          <%= number_to_currency( total, :unit => "€" )%>
-        </td>
-    </tr>
-</table>
+  <% @cart.each do | id, quantity | %>
+      <% item = Project.find_by_id(id) %>
+      <tr>
+          <td class="title"><%= item.name %></td>
+          <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
+          <td class="quantity"><%= quantity %></td>
+          <td class="price"><%= number_to_currency((item.price * quantity), :unit => "€") %></td>
+      </tr>
+      <% total += item.price * quantity %>
+  <% end %>
+
+      <tr>
+          <td colspan="3">
+              <div class="total">Total:</div>
+          </td>
+          <td>
+            <%= number_to_currency( total, :unit => "€" )%>
+          </td>
+      </tr>
+  </table>
+<% end %>  
