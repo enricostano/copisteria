@@ -4,6 +4,8 @@ Copisteria2::Application.routes.draw do
   
   match "cart/add/:id" => "cart#add", :as => :add_cart
 
+  match "cart/change/(:id/(:quantity))" => "cart#change", :as => :change_cart
+
   resources :file_projects
 
   resources :projects

@@ -17,7 +17,11 @@
       <tr>
           <td class="title"><%= item.name %></td>
           <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
-          <td class="quantity"><%= quantity %></td>
+          <td class="quantity">
+            <%= quantity %>
+            <%= button_to '-', change_cart_path(:id => item, :quantity => (quantity - 1)) %>
+            <%= button_to '+', change_cart_path(:id => item, :quantity => (quantity + 1)) %>
+          </td>
           <td class="price"><%= number_to_currency((item.price * quantity), :unit => "€") %></td>
       </tr>
       <% total += item.price * quantity %>
@@ -32,4 +36,5 @@
           </td>
       </tr>
   </table>
+  <%= button_to 'Svuota il cestino', change_cart_path %>
 <% end %>  

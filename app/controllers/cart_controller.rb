@@ -1,5 +1,4 @@
 class CartController < ApplicationController
-  #load_and_authorize_resource
   
   def add
     authorize! :add, :cart
@@ -15,4 +14,25 @@ class CartController < ApplicationController
   def index
     @cart = session[:cart] || {}
   end
+
+  def change
+    authorize! :change, :cart
+
+    cart = session[:cart]
+    id = params[:id];
+    quantity = params[:quantity].to_i
+
+    if cart && cart[id]
+      unless quantity <= 0
+        cart[id] = quantity
+      else
+        cart.delete id
+      end
+    else
+      session.delete(:cart)
+    end
+
+    redirect_to :dashboard
+  end
+
 end
