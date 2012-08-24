@@ -1,10 +1,9 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :start, :stop, :institution_id, :file_projects_attributes
+  attr_accessible :name, :start, :stop, :institution_id, :file_projects_attributes, :price
   belongs_to :institution
   has_many :file_projects, :dependent => :destroy
   accepts_nested_attributes_for :file_projects, :allow_destroy => true
-  has_many :line_items
-  validates :name, :start, :stop, :institution, :presence => true
+  validates :name, :start, :stop, :institution, :price, :presence => true
   validate :start_before_stop_date
 
   
