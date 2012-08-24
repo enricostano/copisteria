@@ -41,8 +41,8 @@
   </table>
 <% end %>
 
-<% if current_user.role? :super_admin || :admin %>
-  <%= link_to 'Edit', edit_project_path(@project) %> |
+<% if current_user.any_role? :super_admin, :admin %>
+  <%= link_to 'Modifica', edit_project_path(@project) %> |
   <%= link_to 'Elenco progetti', projects_path %>
 <% else %>
   <%= button_to 'Aggiungi al carrello', add_cart_path(@project) %>

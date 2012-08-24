@@ -8,27 +8,29 @@
 	
 <table class="cart">
     <tr>
-        <td class="legend">Item</td>
-        <td class="legend">Price</td>
-        <td class="legend">Qty</td>
-        <td class="legend">Total</td>
+        <td class="legend">Progetto</td>
+        <td class="legend">Prezzo</td>
+        <td class="legend">Quantità</td>
+        <td class="legend">Totale</td>
     </tr>
 	
 <% @cart.each do | id, quantity | %>
     <% item = Project.find_by_id(id) %>
     <tr>
         <td class="title"><%= item.name %></td>
-        <td class="price"></td>
+        <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
         <td class="quantity"><%= quantity %></td>
-        <td class="price"></td>
+        <td class="price"><%= number_to_currency((item.price * quantity), :unit => "€") %></td>
     </tr>
+    <% total += item.price * quantity %>
 <% end %>
 
     <tr>
-        <td colspan="4">
+        <td colspan="3">
             <div class="total">Total:</div>
         </td>
         <td>
+          <%= number_to_currency( total, :unit => "€" )%>
         </td>
     </tr>
 </table>
