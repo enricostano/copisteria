@@ -28,9 +28,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     
-    1.times do
-      file_project = @project.file_projects.build
-    end
+    file_project = @project.file_projects.build
     
     respond_to do |format|
       format.html # new.html.erb
