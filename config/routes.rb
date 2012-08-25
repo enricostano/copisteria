@@ -1,5 +1,7 @@
 Copisteria2::Application.routes.draw do
 
+  resources :line_items
+
   resources :orders
 
   match "dashboard" => "dashboard#index"
