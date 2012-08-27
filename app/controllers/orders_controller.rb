@@ -42,6 +42,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
+    #spostare il ciclo cart > line_items come metodo del modello Order
     cart = session[:cart]
 
     cart.each do | id, quantity |
@@ -55,7 +56,7 @@ class OrdersController < ApplicationController
 
     @order.user = current_user
 
-    session.delete[:cart]
+    session.delete(:cart)
 
     respond_to do |format|
       if @order.save
