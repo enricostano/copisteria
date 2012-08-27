@@ -42,6 +42,21 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
+    cart = session[:cart]
+
+    cart.each do | id, quantity |
+      item = Project.find_by_id(id)
+      @line_item = LineItem.new
+      @line_item.project = item
+      @line_item.quantity = quantity
+      @line_item.price = item.price
+      @order.line_items << @line_item
+    end
+
+    @order.user = current_user
+
+    session.delete[:cart]
+
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }

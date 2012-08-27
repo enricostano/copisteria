@@ -35,4 +35,8 @@ class CartController < ApplicationController
     redirect_to :dashboard
   end
 
+  def create_order_with_cart
+    redirect_to :order
+  end
+
 end
