@@ -12,12 +12,9 @@
 <div id="right_dashboard_column">
   <% if current_user.any_role? :super_admin, :admin %>
     <div class="div_interno" id="latest_downloads">
-       <h2>Ultimi downloads</h2>
-       data ora utente file<br/>
-       data ora utente file<br/>
-       data ora utente file<br/>
-       data ora utente file<br/>
-       data ora utente file<br/>
+      <h2>Ultimi 10 ordini</h2>
+      <%= render 'orders/order_list' %>
+      <%= link_to 'Elenco ordini', orders_path %>
     </div>
     <div class="div_interno" id="users_buttons">
       <%= link_to 'Elenco utenti', users_path %> |
