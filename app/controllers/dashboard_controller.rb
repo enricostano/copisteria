@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
       @project_institutions = Project.nextbyinstitution
       if current_user.role? :user 
         @cart = session[:cart] || {}
-        @orders_by_user = current_user.orders
+        @orders_by_user = current_user.orders.order('created_at DESC')
       end
       render "index"
     else
