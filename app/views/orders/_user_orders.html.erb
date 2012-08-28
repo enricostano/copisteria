@@ -7,7 +7,7 @@
       </tr>
       <% @orders_by_user.each do |order| %>
         <tr>
-          <td class="numero"><%= order.id %></td>
+          <td class="numero"><%= link_to order.id, order_path(order) %></td>
           <td class="data"><%= order.created_at.strftime("%d %b %y") %></td>
           <td class="importo"><%= number_to_currency(order.line_items.sum(:price), :unit => "€") %></td>
         </tr>
