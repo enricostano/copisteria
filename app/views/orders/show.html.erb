@@ -30,5 +30,5 @@
   </table>
 </div>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Edit', edit_order_path(@order) if current_user.any_role? :SuperAdmin, :Admin %> |
 <%= link_to 'Home', dashboard_path %>
