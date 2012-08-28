@@ -14,6 +14,3 @@
 /log/*.log
 /tmp
 
-# Ignore environment settings
-/config/environments/*.rb
-/config/environments/*.swp
