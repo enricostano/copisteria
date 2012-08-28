@@ -64,6 +64,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
+        #Send an email to admin
+        UserMailer.order_created_to_admin(@order).deliver
+
         format.html { redirect_to :dashboard, notice: "L'ordine è stato creato correttamente." }
         format.json { render json: @order, status: :created, location: @order }
       else
