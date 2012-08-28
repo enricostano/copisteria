@@ -2,8 +2,10 @@ class DashboardController < ApplicationController
   def index
     if user_signed_in?
       @project_institutions = Project.nextbyinstitution
-      @cart = session[:cart] || {}
-      @orders_by_user = current_user.orders
+      if current_user.role? :user 
+        @cart = session[:cart] || {}
+        @orders_by_user = current_user.orders
+      end
       render "index"
     else
       render "splashpage", :layout => "splashpage"
