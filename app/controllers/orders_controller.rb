@@ -103,4 +103,22 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def authorize
+    @order = Order.find(params[:id])
+    @order.authorized = true
+
+    respond_to do |format|
+      if @order.save
+        #notify the user via email
+
+        format.html { redirect_to dashboard_path, :notice => "L'ordine è stato autorizzato con successo" }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to dashboard_path, :notice => "L'ordine NON è stato autorizzato!" }
+        format.json { head :no_content }
+      end
+    end
+  end
+
 end

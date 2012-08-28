@@ -2,7 +2,7 @@ Copisteria2::Application.routes.draw do
 
   resources :orders
 
-  match "order/autorizza/:id" => "order#authorize", :as => :authorize_order
+  match "order/autorizza/:id" => "orders#authorize", :as => :authorize_order
 
   resources :line_items
 
