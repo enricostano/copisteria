@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Gentile cliente,</p>
+    <p>la informiamo che il suo ordine n. <%= @order.id %> del <%= @order.created_at.strftime("%d %B %Y") %> presso la copisteria Stano è stato autorizzato.</p>
+    <p>La preghiamo di scaricare i file richiesti utilizzando il seguente link <%= order_url(@order, :host => "localhost:3000") %><br/>
+    </p>
+    <p>La ringraziamo e le auguriamo buona giornata,</p>
+    <p>Staff Copisteria Stano.<br/>
+    tel. 099 9711333<br/>
+    email copisteria@stanosas.it<br/>
+    www.stanosas.it</p>
+  </body>
+</html>

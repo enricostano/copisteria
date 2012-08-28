@@ -111,6 +111,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         #notify the user via email
+        UserMailer.authorized_order_to_user(@order).deliver
 
         format.html { redirect_to dashboard_path, :notice => "L'ordine è stato autorizzato con successo" }
         format.json { head :no_content }
