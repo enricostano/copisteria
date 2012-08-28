@@ -4,9 +4,10 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>Il cliente <%= @order.user.email %> ha creato un nuovo ordine!</h1>
+    <p>Ciao Rita!</p>
+    <p>Il cliente <%= @order.user.email %> ha creato l'ordine n. <%= @order.id %>.</p>
     <p>
-      Per visualizzare il nuovo ordine seguire il link <%= @url %><br/>
+    Per visualizzare il nuovo ordine seguire il link <%= order_url(@order, :host => "localhost:3000") %><br/>
     </p>
     <p>Buona giornata e buon lavoro!</p>
   </body>

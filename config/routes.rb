@@ -2,6 +2,8 @@ Copisteria2::Application.routes.draw do
 
   resources :orders
 
+  match "order/autorizza/:id" => "order#authorize", :as => :authorize_order
+
   resources :line_items
 
   match "dashboard" => "dashboard#index"
