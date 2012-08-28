@@ -1,0 +1,11 @@
+<div class="user_orders">
+    <% @orders_by_user.each do |order| %>
+    <h3>Ordine n. <%=h order.id %></h3>
+    <ul>
+        <% order.line_items.each do |line_item| %>
+        <li><%= line_item.project.name %></li>
+        <% end %>
+    </ul>
+    <% end %>
+</div>
+
