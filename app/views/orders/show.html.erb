@@ -1,10 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>User:</b>
-  <%= @order.user_id %>
+  <b>Ordine n. <%= @order.id %></b>
 </p>
 
+<div class="order-details">
+  <p>Creato il <%= @order.created_at.strftime("%d %B %Y") %></p>
+  <table>
+    <tr>
+      <td class="legend">Progetto</td>
+      <td class="legend">Prezzo</td>
+      <td class="legend">Quantità</td>
+      <td class="legend">Totale</td>
+    </tr>
+    <% total = 0 %>
+    <% @order.line_items.each do |line_item|%>
+      <tr>
+        <td class="project-name"><%= line_item.project.name %></td>
+        <td class="price"><%= number_to_currency(line_item.price) %></td>
+        <td class="quantity"><%= line_item.quantity %></td>
+        <td class="total"><%= number_to_currency(line_item.quantity * line_item.price, :unit => "€") %></td>
+      </tr>
+      <% total += line_item.price %>
+    <% end %>
+    <tr>
+      <td colspan="3" class="grand-total">Totale</td>
+      <td class="grand-total"><%= number_to_currency(total, :unit => "€") %></td>
+    </tr>
+  </table>
+</div>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Home', dashboard_path %>
