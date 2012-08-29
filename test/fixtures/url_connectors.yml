@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  temp_url: MyString
+  real_url: MyString
+  user_id: 1
+  order_id: 1
+  active: false
+
+two:
+  temp_url: MyString
+  real_url: MyString
+  user_id: 1
+  order_id: 1
+  active: false

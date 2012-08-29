@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Temp url:</b>
+  <%= @url_connector.temp_url %>
+</p>
+
+<p>
+  <b>Real url:</b>
+  <%= @url_connector.real_url %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @url_connector.user_id %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @url_connector.order_id %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @url_connector.active %>
+</p>
+
+
+<%= link_to 'Edit', edit_url_connector_path(@url_connector) %> |
+<%= link_to 'Back', url_connectors_path %>

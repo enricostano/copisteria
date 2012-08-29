@@ -1,5 +1,7 @@
 Copisteria2::Application.routes.draw do
 
+  resources :url_connectors
+
   resources :orders
 
   match "order/autorizza/:id" => "orders#authorize", :as => :authorize_order

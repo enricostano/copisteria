@@ -1,0 +1,31 @@
+<h1>Listing url_connectors</h1>
+
+<table>
+  <tr>
+    <th>Temp url</th>
+    <th>Real url</th>
+    <th>User</th>
+    <th>Order</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @url_connectors.each do |url_connector| %>
+  <tr>
+    <td><%= url_connector.temp_url %></td>
+    <td><%= url_connector.real_url %></td>
+    <td><%= url_connector.user_id %></td>
+    <td><%= url_connector.order_id %></td>
+    <td><%= url_connector.active %></td>
+    <td><%= link_to 'Show', url_connector %></td>
+    <td><%= link_to 'Edit', edit_url_connector_path(url_connector) %></td>
+    <td><%= link_to 'Destroy', url_connector, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Url connector', new_url_connector_path %>

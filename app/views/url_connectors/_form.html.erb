@@ -1,0 +1,37 @@
+<%= form_for(@url_connector) do |f| %>
+  <% if @url_connector.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@url_connector.errors.count, "error") %> prohibited this url_connector from being saved:</h2>
+
+      <ul>
+      <% @url_connector.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :temp_url %><br />
+    <%= f.text_field :temp_url %>
+  </div>
+  <div class="field">
+    <%= f.label :real_url %><br />
+    <%= f.text_field :real_url %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :order_id %><br />
+    <%= f.number_field :order_id %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
