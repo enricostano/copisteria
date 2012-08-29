@@ -107,6 +107,14 @@ class OrdersController < ApplicationController
   def authorize
     @order = Order.find(params[:id])
     @order.authorized = true
+    
+    @order.line_items.each do | line_item |
+      @url_connector = UrlConnector.new
+      @url_connector.user = @order.user
+      @url_connector.order = @order
+      @url_connector.real_url = line_item.project.file_project.file.url
+      @order.url_connectors << @url_connector
+    end
 
     respond_to do |format|
       if @order.save
