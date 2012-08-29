@@ -7,14 +7,18 @@
   </tr>
 
 <% @orders.each do |order| %>
-  <tr>
-    <td><%= link_to order.user.email, user_path(order.user) %></td>
-    <td><%= link_to order.id, order_path(order) %></td>
-    <td><%= order.created_at.strftime("%d %B %Y") %></td>
-    <td><%= number_to_currency(order.line_items.sum(:price), :unit => "€") %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% if order.authorized %>
+    <tr class="order_authorized">
+  <% else %>
+    <tr>
+  <% end %>
+      <td><%= link_to order.user.email, user_path(order.user) %></td>
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= order.created_at.strftime("%d %B %Y") %></td>
+      <td><%= number_to_currency(order.line_items.sum(:price), :unit => "€") %></td>
+      <td><%= link_to 'Show', order %></td>
+      <td><%= link_to 'Edit', edit_order_path(order) %></td>
+      <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
 <% end %>
 </table>
