@@ -17,7 +17,7 @@
     <% @order.line_items.each do |line_item|%>
       <tr>
         <td class="project-name"><%= line_item.project.name %></td>
-        <td class="price"><%= number_to_currency(line_item.price) %></td>
+        <td class="price"><%= number_to_currency(line_item.price, :unit => "€") %></td>
         <td class="quantity"><%= line_item.quantity %></td>
         <td class="total"><%= number_to_currency(line_item.quantity * line_item.price, :unit => "€") %></td>
       </tr>
