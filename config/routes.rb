@@ -21,7 +21,7 @@ Copisteria2::Application.routes.draw do
   devise_for :users #, :controllers => { :registrations => "users" }
 
   scope "/admin" do
-    resources :users, :only => [:new, :show, :index, :edit, :update, :create]
+    resources :users
   end
 
   # The priority is based upon order of creation:

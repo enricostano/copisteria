@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :partitaiva, :cap, :numericality => { :only_integer => true }
   validates :partitaiva, :uniqueness => true
 
+  before_save :setup_role
+
   def role?(role)
     return !!self.roles.find_by_name(role.to_s.camelize)
   end
@@ -28,4 +30,9 @@ class User < ActiveRecord::Base
     return roles.any? { |r| self.roles.map(&:name).include?(r.to_s.camelize) }
   end
 
+  def setup_role
+    if self.role_ids.empty?
+      self.role_ids = [3]
+    end
+  end
 end
