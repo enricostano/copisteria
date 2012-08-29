@@ -28,11 +28,12 @@
 <% if current_user.any_role? :super_admin, :admin %>
   <% if @project.file_project %>
     <p>
-      <a href="<%= file_project.file.url %>"><%= @project.file_project.name %></a>
+      <a href="<%= @project.file_project.file.url %>"><%= @project.file_project.name %></a>
     </p>
   <% else %>
     <p>Non ci sono file allegati a questo progetto.</p>
   <% end %>
+<% end %>
 
 <% if current_user.any_role? :super_admin, :admin %>
   <%= link_to 'Modifica', edit_project_path(@project) %> |
