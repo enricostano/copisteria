@@ -31,6 +31,6 @@
 </div>
 <% if current_user.any_role? :SuperAdmin, :Admin %>
   <%= link_to 'Edit', edit_order_path(@order) %>  |
-  <%= link_to 'Autorizza', authorize_order_path(@order), data: { confirm: 'Autorizzo questo ordine?' } if @order.authorized %>
+  <%= (link_to 'Autorizza', authorize_order_path(@order), data: { confirm: 'Autorizzo questo ordine?' }) if !@order.authorized %>
 <% end %>
 <%= link_to 'Home', dashboard_path %>
