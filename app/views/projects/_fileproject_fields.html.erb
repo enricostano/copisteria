@@ -1,6 +1,6 @@
 <p>
-  <%= f.label :file, "File" %>
+  <%= @project.file.name unless @project.file.nil? %>
   <%= f.file_field :file %>
   <%= f.check_box :remove_file %>
-  <%= f.label :remove_file, "Remove file" %>
+  <%= f.label :remove_file, "Rimuovi file" %>
 </p>

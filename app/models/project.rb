@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :start, :stop, :institution_id, :price, :file
+  attr_accessible :name, :start, :stop, :institution_id, :price, :file, :remove_file
   belongs_to :institution
   file_accessor :file
   has_many :orders
