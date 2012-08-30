@@ -1,8 +1,7 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :start, :stop, :institution_id, :price
+  attr_accessible :name, :start, :stop, :institution_id, :price, :file
   belongs_to :institution
-  has_one :file_project, :dependent => :destroy
-  accepts_nested_attributes_for :file_project, :allow_destroy => true
+  file_accessor :file
   has_many :orders
   has_many :line_items
   before_destroy :ensure_not_referenced_by_any_line_item

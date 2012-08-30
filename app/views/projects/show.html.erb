@@ -26,9 +26,9 @@
 </p>
 
 <% if current_user.any_role? :super_admin, :admin %>
-  <% if @project.file_project %>
+  <% if @project.file %>
     <p>
-      <a href="<%= @project.file_project.file.url %>"><%= @project.file_project.name %></a>
+      <a href="<%= @project.file.url %>"><%= @project.file.name %></a>
     </p>
   <% else %>
     <p>Non ci sono file allegati a questo progetto.</p>

@@ -28,8 +28,6 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     
-    file_project = @project.build_file_project
-    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }

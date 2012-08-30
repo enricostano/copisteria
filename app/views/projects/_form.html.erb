@@ -32,9 +32,7 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= f.fields_for :file_project, :html => {:multipart => true} do |builder| %>
-      <%= render "fileproject_fields", :f => builder %>
-    <% end %>
+    <%= render "fileproject_fields", :f => f %>
   </div>
   <div class="actions">
     <%= f.submit %>
