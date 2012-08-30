@@ -112,7 +112,8 @@ class OrdersController < ApplicationController
       @url_connector = UrlConnector.new
       @url_connector.user = @order.user
       @url_connector.order = @order
-      @url_connector.real_url = line_item.project.file_project.file.url
+      @url_connector.real_url = line_item.project.file.url
+      @url_connector.temp_url = (0...6).map{ ('a'..'z').to_a[rand(26)] }.join
       @order.url_connectors << @url_connector
     end
 
@@ -130,4 +131,13 @@ class OrdersController < ApplicationController
     end
   end
 
+  def download
+    @url_connector = UrlConnector.where('temp_url = ?', params[:temp_url]).first
+    if !@url_connector.nil?
+      if @url_connectors.user_id == current_user_id
+        send_file @url_connector.order.file.name
+        #notify to admin
+      end
+    end
+  end
 end

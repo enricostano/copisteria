@@ -16,7 +16,7 @@ class Ability
     if user.role? :user
       can :show, Project
       can [:add, :change], :cart
-      can :manage, Order, :user_id => user.id
+      can [:create, :show], Order, :user_id => user.id
     end
     
     # The first argument to `can` is the action you are giving the user permission to do.
