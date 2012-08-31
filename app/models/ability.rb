@@ -10,13 +10,14 @@ class Ability
     end
     
     if user.role? :admin
-      can :manage, [User, Project, Order]
+      can :manage, [User, Institution, Project, Order]
     end
     
     if user.role? :user
       can :show, Project
       can [:add, :change], :cart
       can [:create, :show], Order, :user_id => user.id
+      can :download, UrlConnector
     end
     
     # The first argument to `can` is the action you are giving the user permission to do.

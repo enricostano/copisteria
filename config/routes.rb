@@ -14,7 +14,7 @@ Copisteria2::Application.routes.draw do
 
   match "cart/change/(:id/(:quantity))" => "cart#change", :as => :change_cart
 
-  match "download/:temp_url" => "orders#download", :as => :orders_download
+  match "download/:temp_url" => "url_connectors#download", :as => :url_connectors_download
 
   resources :projects
 

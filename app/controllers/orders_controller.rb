@@ -106,19 +106,18 @@ class OrdersController < ApplicationController
 
   def authorize
     @order = Order.find(params[:id])
-    @order.authorized = true
-    
+        
     @order.line_items.each do | line_item |
       @url_connector = UrlConnector.new
       @url_connector.user = @order.user
-      @url_connector.order = @order
-      @url_connector.real_url = line_item.project.file.url
       @url_connector.temp_url = (0...6).map{ ('a'..'z').to_a[rand(26)] }.join
-      @order.url_connectors << @url_connector
+      line_item.url_connector = @url_connector
     end
+   
+    #@order.authorized = true
 
     respond_to do |format|
-      if @order.save
+      if @order.save 
         #notify the user via email
         UserMailer.authorized_order_to_user(@order).deliver
 
@@ -131,13 +130,4 @@ class OrdersController < ApplicationController
     end
   end
 
-  def download
-    @url_connector = UrlConnector.where('temp_url = ?', params[:temp_url]).first
-    if !@url_connector.nil?
-      if @url_connectors.user_id == current_user_id
-        send_file @url_connector.order.file.name
-        #notify to admin
-      end
-    end
-  end
 end

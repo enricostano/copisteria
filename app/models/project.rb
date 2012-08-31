@@ -2,7 +2,6 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :start, :stop, :institution_id, :price, :file, :remove_file
   belongs_to :institution
   file_accessor :file
-  has_many :orders
   has_many :line_items
   before_destroy :ensure_not_referenced_by_any_line_item
   validates :name, :start, :stop, :institution, :price, :presence => true

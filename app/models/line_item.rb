@@ -3,4 +3,5 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :order
   belongs_to :project
+  has_one :url_connector, :dependent => :destroy
 end

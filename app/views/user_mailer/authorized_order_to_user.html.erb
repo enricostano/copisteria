@@ -6,10 +6,19 @@
   <body>
     <p>Gentile cliente,</p>
     <p>la informiamo che il suo ordine n. <%= @order.id %> del <%= @order.created_at.strftime("%d %B %Y") %> presso la copisteria Stano è stato autorizzato.</p>
-    <p>La preghiamo di scaricare i file richiesti utilizzando il seguente link <%= order_url(@order, :host => "localhost:3000") %><br/>
-    </p>
+    <p>La preghiamo di scaricare i file richiesti utilizzando
+    <% if @order.line_items.size == 1 %>
+      il seguente link:<br/>
+    <% else %>
+      i seguenti link:<br/>
+    <% end %>
+    <br/>
+    <% @order.line_items.each do |line_item| %>
+      <%= link_to line_item.project.name, url_connectors_download_url(line_item.url_connector.temp_url) %><br/>
+    <% end %>
+   </p>
     <p>La ringraziamo e le auguriamo buona giornata,</p>
-    <p>Staff Copisteria Stano.<br/>
+    <p>Staff Copisteria Stano<br/>
     tel. 099 9711333<br/>
     email copisteria@stanosas.it<br/>
     www.stanosas.it</p>

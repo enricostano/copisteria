@@ -11,20 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829163656) do
+ActiveRecord::Schema.define(:version => 20120831160851) do
 
   create_table "carts", :force => true do |t|
     t.boolean  "shipped"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "file_projects", :force => true do |t|
-    t.string   "name"
-    t.string   "file_uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "project_id"
   end
 
   create_table "institutions", :force => true do |t|
@@ -75,12 +67,11 @@ ActiveRecord::Schema.define(:version => 20120829163656) do
 
   create_table "url_connectors", :force => true do |t|
     t.string   "temp_url"
-    t.string   "real_url"
     t.integer  "user_id"
-    t.integer  "order_id"
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.boolean  "active",       :default => true
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "line_item_id"
   end
 
   create_table "users", :force => true do |t|

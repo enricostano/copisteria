@@ -1,4 +1,6 @@
 class UrlConnectorsController < ApplicationController
+  load_and_authorize_resource
+
   # GET /url_connectors
   # GET /url_connectors.json
   def index
@@ -78,6 +80,21 @@ class UrlConnectorsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to url_connectors_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def download
+    if @url_connector = UrlConnector.where('temp_url = ?', params[:temp_url]).first
+      if @url_connector.user == current_user && @url_connector.active
+        send_file @url_connector.line_item.project.file.path, :disposition => 'attachment'
+        @url_connector.active = false
+        @url_connector.save
+        #notify to admin
+      else
+        # errore utente non corrisponde o URL già usata
+      end
+    else
+      #404
     end
   end
 end
