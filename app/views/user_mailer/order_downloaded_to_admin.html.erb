@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>Ciao Rita!</p>
+    <p>Il cliente <%= @order.user.email %> ha scaricato i file relativi all'ordine n. <%= @order.id %>.</p>
+    <p>
+    Per visualizzare l'ordine seguire il link <%= order_url(@order) %><br/>
+    </p>
+    <p>Buona giornata e buon lavoro!</p>
+  </body>
+</html>

@@ -12,4 +12,9 @@ class UserMailer < ActionMailer::Base
     @order = order
     mail(:to => @order.user.email, :subject => 'Il suo ordine è stato autorizzato')
   end
+
+  def order_downloaded_to_admin(order)
+    @order = order
+    mail(:to => 'enricostn@gmail.com', :subject => 'Download eseguito')
+  end
 end

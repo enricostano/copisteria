@@ -90,6 +90,7 @@ class UrlConnectorsController < ApplicationController
         @url_connector.active = false
         @url_connector.save
         #notify to admin
+        UserMailer.order_downloaded_to_admin(@url_connector.line_item.order).deliver
       else
         # errore utente non corrisponde o URL già usata
       end

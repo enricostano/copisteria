@@ -114,7 +114,7 @@ class OrdersController < ApplicationController
       line_item.url_connector = @url_connector
     end
    
-    #@order.authorized = true
+    @order.authorized = true
 
     respond_to do |format|
       if @order.save 
