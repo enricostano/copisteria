@@ -58,5 +58,14 @@ module Copisteria2
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Dragonfly settings
+    config.middleware.insert 0, 'Rack::Cache', {
+      :verbose     => true,
+      :metastore   => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/meta"),
+      :entitystore => URI.encode("file:#{Rails.root}/tmp/dragonfly/cache/body")
+    }
+    config.middleware.insert_after 'Rack::Cache', 'Dragonfly::Middleware', :images
+
   end
 end
