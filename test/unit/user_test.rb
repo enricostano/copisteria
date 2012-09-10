@@ -80,11 +80,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "has already been taken", user2.errors[:email].join('; ')
   end
 
-  test "saving a user without role it assign it user role with id 3" do
+  test "saving a user without role it assign it role with id 3" do
     role1 = create(:role)
     role2 = create(:role)
     role3 = create(:role)
     user = create(:user)
-    assert user.roles.include?(role3), "no way"
+    assert user.roles.include?(role3), "no role3 in roles"
   end
 end
