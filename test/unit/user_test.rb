@@ -81,10 +81,9 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "saving a user without role it assign it role with id 3" do
-    create(:role, name: "superadmin")
-    create(:role, name: "admin")
-    create(:role, name: "user")
+    roles = ['superadmin', 'admin', 'user']
+    roles.each { |rolename| create(:role, name: rolename) }
     user = create(:user)
-    assert user.roles.where(name: 'user').present?, "no role3 in roles"
+    assert user.roles.where(name: 'user').present?, "no user role in roles"
   end
 end
