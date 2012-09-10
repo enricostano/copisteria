@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910182831) do
+ActiveRecord::Schema.define(:version => 20120910185535) do
 
   create_table "carts", :force => true do |t|
     t.boolean  "shipped"
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(:version => 20120910182831) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                                         :null => false
     t.integer  "institution_id",                               :null => false
-    t.date     "start"
-    t.date     "stop"
+    t.date     "start",                                        :null => false
+    t.date     "stop",                                         :null => false
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.string   "file_uid"
-    t.decimal  "price",          :precision => 8, :scale => 2
+    t.decimal  "price",          :precision => 8, :scale => 2, :null => false
   end
 
   create_table "roles", :force => true do |t|
