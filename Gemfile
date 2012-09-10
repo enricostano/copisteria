@@ -45,3 +45,5 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.12'
 
 gem 'cancan'
+
+gem 'factory_girl_rails'

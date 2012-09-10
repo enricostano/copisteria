@@ -6,17 +6,22 @@
 </p>
 
 <p>
+  <b>Ragione sociale:</b>
+  <%= @user.ragionesociale %>
+</p>
+
+<p>
   <b>Partita IVA:</b>
   <%= @user.partitaiva %>
 </p>
 
 <p>
-  <b>Phone:</b>
+  <b>Telefono:</b>
   <%= @user.phone %>
 </p>
 
 <p>
-  <b>City:</b>
+  <b>Città:</b>
   <%= @user.city %>
 </p>
 
@@ -29,5 +34,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Modifica', edit_user_path(@user) %> |
+<%= link_to 'Elenco utenti', users_path %>

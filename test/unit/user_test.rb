@@ -11,140 +11,60 @@ class UserTest < ActiveSupport::TestCase
     assert user.errors[:partitaiva].any?
     assert user.errors[:city].any?
     assert user.errors[:cap].any?
+    assert user.errors[:ragionesociale].any?
     assert !user.save, "Saved empty user"
   end
-  
-  test "cap's lenght cannot be more than 5" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :partitaiva => "12345678901")
-    
+
+  test "all the values are corrects" do
+    user = build(:user)
+    assert user.valid?
+  end
+
+  test "cap length cannot be more than 5" do
+    user = build(:user)
     user.cap = "123456"
     assert user.invalid?
     assert_equal "is the wrong length (should be 5 characters)", user.errors[:cap].join('; ')
   end
-  
-  test "cap's lenght cannot be less than 5" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :partitaiva => "12345678901")
-    
+
+  test "cap length cannot be less than 5" do
+    user = build(:user)
     user.cap = "1234"
     assert user.invalid?
     assert_equal "is the wrong length (should be 5 characters)", user.errors[:cap].join('; ')
   end
-  
-  test "cap's lenght is 5" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :partitaiva => "12345678901")
-    
-    user.cap = "12345"
-    assert user.valid?
+
+  test "cap cannot be non digital characters" do
+    user = build(:user)
+    user.cap = "123A5"
+    assert user.invalid?
+    assert_equal "is not a number", user.errors[:cap].join('; ')
   end
-  
-  test "partitaiva's lenght cannot be more than 11" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :cap        => "12345")
-    
+
+  test "partitaiva length cannot be more than 11" do
+    user = build(:user)
     user.partitaiva = "123456789012"
     assert user.invalid?
     assert_equal "is the wrong length (should be 11 characters)", user.errors[:partitaiva].join('; ')
   end
 
-  test "partitaiva's lenght cannot be less than 11" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :cap        => "12345")
-    
+  test "partitaiva length cannot be less than 11" do
+    user = build(:user)
     user.partitaiva = "1234567890"
     assert user.invalid?
     assert_equal "is the wrong length (should be 11 characters)", user.errors[:partitaiva].join('; ')
   end
-  
-  test "partitaiva's lenght is 11" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :cap        => "12345")
-    
-    user.partitaiva = "12345678901"
-    assert user.valid?
-  end
 
   test "partitaiva cannot be non digit characters" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :cap        => "12345")
-    
-    user.partitaiva = "questaNON31"
-    assert user.invalid?
-    assert_equal "is not a number", user.errors[:partitaiva].join('; ')
-    
-    user.partitaiva = "questaNONep"
+    user = build(:user)
+    user.partitaiva = "123A56TedO1"
     assert user.invalid?
     assert_equal "is not a number", user.errors[:partitaiva].join('; ')
   end
 
-  test "partitaiva has only digit characters" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :cap        => "12345")
-    
-    user.partitaiva = "12345678901"
-    assert user.valid?
-  end
-
-  test "cap cannot be non digit characters" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :partitaiva => "12345678901")
-    
-    user.cap = "qu3st"
-    assert user.invalid?
-    assert_equal "is not a number", user.errors[:cap].join('; ')
-    
-    user.partitaiva = "quest"
-    assert user.invalid?
-    assert_equal "is not a number", user.errors[:cap].join('; ')
-  end
-
-  test "cap has only digit characters" do
-    user = User.new(:email      => "puppy@puppa.pup",
-                    :password   => "secret",
-                    :phone      => "0999711333",
-                    :address    => "via plutarco, 37",
-                    :city       => "Barcelona",
-                    :partitaiva => "12345678901")
-    
-    user.cap = "12345"
-    assert user.valid?
+  test "if no roles are setted then call setup_role and set it to 3" do
+    user = build(:user)
+    user.expects(:setup_role)
+    user.save!
   end
 end
