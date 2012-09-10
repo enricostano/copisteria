@@ -21,50 +21,44 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "cap length cannot be more than 5" do
-    user = build(:user)
-    user.cap = "123456"
+    user = build(:user, cap: "123456")
     assert user.invalid?
     assert_equal "is the wrong length (should be 5 characters)", user.errors[:cap].join('; ')
   end
 
   test "cap length cannot be less than 5" do
-    user = build(:user)
-    user.cap = "1234"
+    user = build(:user, cap: "1234")
     assert user.invalid?
     assert_equal "is the wrong length (should be 5 characters)", user.errors[:cap].join('; ')
   end
 
   test "cap cannot be non digital characters" do
-    user = build(:user)
-    user.cap = "123A5"
+    user = build(:user, cap: "123A5")
     assert user.invalid?
     assert_equal "is not a number", user.errors[:cap].join('; ')
   end
 
   test "partitaiva length cannot be more than 11" do
-    user = build(:user)
-    user.partitaiva = "123456789012"
+    user = build(:user, partitaiva: "123456789012")
     assert user.invalid?
     assert_equal "is the wrong length (should be 11 characters)", user.errors[:partitaiva].join('; ')
   end
 
   test "partitaiva length cannot be less than 11" do
-    user = build(:user)
-    user.partitaiva = "1234567890"
+    user = build(:user, partitaiva: "1234567890")
     assert user.invalid?
     assert_equal "is the wrong length (should be 11 characters)", user.errors[:partitaiva].join('; ')
   end
 
   test "partitaiva cannot be non digit characters" do
-    user = build(:user)
-    user.partitaiva = "123A56TedO1"
+    user = build(:user, partitaiva: "123A56TedO1")
     assert user.invalid?
     assert_equal "is not a number", user.errors[:partitaiva].join('; ')
   end
 
-  test "if no roles are setted then call setup_role and set it to 3" do
+  test "partita iva must be unique" do
     user = build(:user)
-    user.expects(:setup_role)
-    user.save!
+    user.valid?
+
   end
 end
