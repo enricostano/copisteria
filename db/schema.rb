@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120908150210) do
+ActiveRecord::Schema.define(:version => 20120910182831) do
 
   create_table "carts", :force => true do |t|
     t.boolean  "shipped"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20120908150210) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
-    t.integer  "institution_id"
+    t.integer  "institution_id",                               :null => false
     t.date     "start"
     t.date     "stop"
     t.datetime "created_at",                                   :null => false

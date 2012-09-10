@@ -8,6 +8,7 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.errors[:institution].any?
     assert project.errors[:start].any?
     assert project.errors[:stop].any?
+    assert project.errors[:price].any?
     assert !project.save, "Saved empty project"
   end
   

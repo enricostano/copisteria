@@ -16,4 +16,16 @@ FactoryGirl.define do
     partitaiva
     cap             '12345'
   end
+
+  factory :institution do
+    name  'Comune di Manduria'
+  end
+
+  factory :project do
+    name        'Project1'
+    institution
+    start       
+    stop        
+    price       '10'
+  end
 end
