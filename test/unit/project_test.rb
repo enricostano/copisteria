@@ -11,34 +11,22 @@ class ProjectTest < ActiveSupport::TestCase
     assert project.errors[:price].any?
     assert !project.save, "Saved empty project"
   end
-  
+
+  test "all the values are corrects" do
+    project = build(:project)
+    assert project.valid?
+  end
+ 
   test "stop must be greater than start date" do
-    project = Project.new(:name           => "Puppa",
-	                      :institution_id => 1)
-	
-	project.start = "2012-08-03"
-	project.stop = "2012-08-01"
-	assert project.invalid?
-	assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
+    project = build(:project, start: "2012-08-03", stop: "2012-08-01")
+	  assert project.invalid?
+	  assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
   end
   
   test "stop can't be equal to start date" do
-    project = Project.new(:name           => "Puppa",
-	                      :institution_id => 1)
-	
-    project.start = "2012-08-03"
-	project.stop = "2012-08-03"
-	assert project.invalid?
-	assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
+	  project = build(:project, start: "2012-08-03", stop: "2012-08-03")
+	  assert project.invalid?
+	  assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
   end
   
-  test "stop is greater than start date" do
-    project = Project.new(:name           => "Puppa",
-	                      :institution_id => 1)
-	
-	project.start = "2012-08-03"
-	project.stop = "2012-08-10"
-	assert project.valid?
-	project.errors.full_messages
-  end
 end

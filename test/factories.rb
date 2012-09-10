@@ -24,8 +24,8 @@ FactoryGirl.define do
   factory :project do
     name        'Project1'
     institution
-    start       
-    stop        
+    start       '2012-08-08' 
+    stop        '2012-08-10'
     price       '10'
   end
 end
