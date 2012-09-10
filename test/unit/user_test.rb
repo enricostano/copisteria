@@ -67,4 +67,24 @@ class UserTest < ActiveSupport::TestCase
     assert user2.invalid?, "User2 was not valid #{user2.errors.inspect}"
     assert_equal "has already been taken", user2.errors[:partitaiva].join('; ')
   end
+
+  test "email must be unique" do
+    user1 = build(:user, email: "thesame@email.com")
+    user1.roles << build(:role)
+    user1.save
+    assert user1.valid?, "User1 was not valid #{user1.errors.inspect}"
+    user2 = build(:user, email: "thesame@email.com")
+    user2.roles << build(:role)
+    user2.save
+    assert user2.invalid?, "User2 was not valid #{user2.errors.inspect}"
+    assert_equal "has already been taken", user2.errors[:email].join('; ')
+  end
+
+  test "saving a user without role it assign it user role with id 3" do
+    role1 = create(:role)
+    role2 = create(:role)
+    role3 = create(:role)
+    user = create(:user)
+    assert user.roles.include?(role3), "no way"
+  end
 end
