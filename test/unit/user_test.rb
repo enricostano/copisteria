@@ -80,7 +80,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "has already been taken", user2.errors[:email].join('; ')
   end
 
-  test "saving a user without role it assign it role with id 3" do
+  test "saving a user without role assign it role with id 3 and named user" do
     roles = ['superadmin', 'admin', 'user']
     roles.each { |rolename| create(:role, name: rolename) }
     user = create(:user)
