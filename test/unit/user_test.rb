@@ -57,14 +57,14 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "partitaiva must be unique" do
-    user1 = build(:user)
+    user1 = build(:user, partitaiva: "12345678901")
     user1.roles << build(:role)
     user1.save
     assert user1.valid?, "User1 was not valid #{user1.errors.inspect}"
-    user2 = build(:user)
+    user2 = build(:user, partitaiva: "12345678901")
     user2.roles << build(:role)
     user2.save
-    assert user2.invalid?
+    assert user2.invalid?, "User2 was not valid #{user2.errors.inspect}"
     assert_equal "has already been taken", user2.errors[:partitaiva].join('; ')
   end
 end
