@@ -1,13 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  order_id: 1
-  project_id: 1
-  quantity: 1
-  price: 9.99
-
-two:
-  order_id: 1
-  project_id: 1
-  quantity: 1
-  price: 9.99
