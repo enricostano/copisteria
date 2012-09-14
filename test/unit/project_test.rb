@@ -29,4 +29,10 @@ class ProjectTest < ActiveSupport::TestCase
 	  assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
   end
   
+  test "ensure not referenced by any line_item before destroy" do
+    3.times { create(:role) }
+    project = create(:project)
+    line_item = create(:line_item, project: project)
+    assert !project.destroy, 'allow destroying project while line_items point to it'
+  end
 end
