@@ -14,3 +14,5 @@
 /log/*.log
 /tmp
 
+#Ignore Vim swap files
+.*.sw[a-z]
