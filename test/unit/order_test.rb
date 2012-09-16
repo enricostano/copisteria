@@ -7,4 +7,7 @@ class OrderTest < ActiveSupport::TestCase
     assert order.errors[:user].any?
     assert !order.save, 'Saved empty order'
   end
+
+  test "add line_items to order from cart" do
+    
 end
