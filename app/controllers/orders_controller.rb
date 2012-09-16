@@ -49,14 +49,16 @@ class OrdersController < ApplicationController
     #spostare il ciclo cart > line_items come metodo del modello Order
     cart = session[:cart]
 
-    cart.each do | id, quantity |
-      item = Project.find_by_id(id)
-      @line_item = LineItem.new
-      @line_item.project = item
-      @line_item.quantity = quantity
-      @line_item.price = item.price
-      @order.line_items << @line_item
-    end
+    @order.add_line_items_to_order_from_cart(cart)
+
+    #cart.each do | id, quantity |
+    #  item = Project.find_by_id(id)
+    #  @line_item = LineItem.new
+    #  @line_item.project = item
+    #  @line_item.quantity = quantity
+    #  @line_item.price = item.price
+    #  @order.line_items << @line_item
+    #end
 
     @order.user = current_user
 

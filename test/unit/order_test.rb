@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class OrderTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should not save empty order" do
+    order = Order.new
+    assert order.invalid?
+    assert order.errors[:user].any?
+    assert !order.save, 'Saved empty order'
+  end
 end
