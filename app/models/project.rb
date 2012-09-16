@@ -10,7 +10,9 @@ class Project < ActiveRecord::Base
   
   def start_before_stop_date
     if self.start && self.stop && self.start >= self.stop
-      self.errors.add :start, ' deve essere prima di stop'
+      self.errors.add :base, 'La data di inizio deve essere antecedente alla data di fine'
+      self.errors.add :start, 'La data di inizio deve essere antecedente alla data di fine'
+      self.errors.add :stop, 'La data di inizio deve essere antecedente alla data di fine'
     end
   end
   

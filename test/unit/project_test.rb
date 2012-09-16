@@ -20,13 +20,15 @@ class ProjectTest < ActiveSupport::TestCase
   test "stop must be greater than start date" do
     project = build(:project, start: "2012-08-03", stop: "2012-08-01")
 	  assert project.invalid?
-	  assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
+	  assert_equal "La data di inizio deve essere antecedente alla data di fine", project.errors[:start].join('; ')
   end
   
   test "stop can't be equal to start date" do
 	  project = build(:project, start: "2012-08-03", stop: "2012-08-03")
 	  assert project.invalid?
-	  assert_equal " deve essere prima di stop", project.errors[:start].join('; ')
+	  assert_equal "La data di inizio deve essere antecedente alla data di fine", project.errors[:base].join('; ')
+	  assert_equal "La data di inizio deve essere antecedente alla data di fine", project.errors[:start].join('; ')
+	  assert_equal "La data di inizio deve essere antecedente alla data di fine", project.errors[:stop].join('; ')
   end
   
   test "ensure not referenced by any line_item before destroy" do
