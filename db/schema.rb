@@ -13,12 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120910185535) do
 
-  create_table "carts", :force => true do |t|
-    t.boolean  "shipped"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "institutions", :force => true do |t|
     t.string   "name"
     t.string   "phone"
