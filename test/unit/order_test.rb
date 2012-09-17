@@ -9,5 +9,9 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test "add line_items to order from cart" do
-    
+    create_list(:role, 3)
+    cart = { create(:project).id => 1 }
+    order = build(:order)
+    assert order.add_line_items_to_order_from_cart(cart)
+  end
 end

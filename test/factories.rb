@@ -30,7 +30,7 @@ FactoryGirl.define do
     stop        '2012-08-10'
     price       '10'
   end
-  
+
   factory :order do
     user
     authorized  'false'
