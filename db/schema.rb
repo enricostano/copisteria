@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918125500) do
+ActiveRecord::Schema.define(:version => 20120918130813) do
 
   create_table "institutions", :force => true do |t|
     t.string   "name",       :null => false
@@ -60,12 +60,12 @@ ActiveRecord::Schema.define(:version => 20120918125500) do
   end
 
   create_table "url_connectors", :force => true do |t|
-    t.string   "temp_url"
-    t.integer  "user_id"
+    t.string   "temp_url",                       :null => false
+    t.integer  "user_id",                        :null => false
     t.boolean  "active",       :default => true
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.integer  "line_item_id"
+    t.integer  "line_item_id",                   :null => false
   end
 
   create_table "users", :force => true do |t|
