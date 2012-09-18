@@ -11,7 +11,8 @@ class Order < ActiveRecord::Base
       item = Project.find(id)
       line_items << LineItem.new(project: item,
                                  quantity: quantity,
-                                 price: item.price)
+                                 price: item.price,
+                                 order: self)
     end
   end
 

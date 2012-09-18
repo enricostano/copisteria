@@ -46,29 +46,19 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
 
-    #spostare il ciclo cart > line_items come metodo del modello Order
     cart = session[:cart]
 
     @order.add_line_items_to_order_from_cart(cart)
 
-    #cart.each do | id, quantity |
-    #  item = Project.find_by_id(id)
-    #  @line_item = LineItem.new
-    #  @line_item.project = item
-    #  @line_item.quantity = quantity
-    #  @line_item.price = item.price
-    #  @order.line_items << @line_item
-    #end
-
     @order.user = current_user
-
-    session.delete(:cart)
 
     respond_to do |format|
       if @order.save
         #Send an email to admin
         UserMailer.order_created_to_admin(@order).deliver
-
+        #empy cart
+        session.delete(:cart)
+        
         format.html { redirect_to :dashboard, notice: "L'ordine è stato creato correttamente." }
         format.json { render json: @order, status: :created, location: @order }
       else

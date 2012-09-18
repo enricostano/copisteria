@@ -1,5 +1,5 @@
 class LineItem < ActiveRecord::Base
-  attr_accessible :order_id, :price, :project_id, :quantity, :project
+  attr_accessible :order_id, :price, :project_id, :quantity, :project, :order
 
   belongs_to :order
   belongs_to :project
