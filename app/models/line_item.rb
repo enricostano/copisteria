@@ -4,4 +4,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :project
   has_one :url_connector, :dependent => :destroy
+
+  validates :order, :project, :quantity, :price, :presence => true
 end
