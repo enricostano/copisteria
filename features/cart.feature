@@ -1,6 +1,6 @@
-Feature: Active projects
+Feature: Cart features
 
-  Just list down all the active projects
+  Test the cart
 
   @wip
   Scenario: create line_items and order from cart
