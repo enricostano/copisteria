@@ -46,10 +46,9 @@ gem 'dragonfly', '~>0.9.12'
 
 gem 'cancan'
 
-gem 'factory_girl_rails'
-
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
+  gem 'factory_girl_rails'
 end
 
 group :test do

@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
   end
 
   def setup_role
+    if Role.all == nil
+      roles = ['SuperAdmin', 'Admin', 'User']
+      roles.each { |rolename| Role.new(name: rolename) }
+    end
     if self.role_ids.empty?
       self.role_ids = [3]
     end

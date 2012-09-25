@@ -2,9 +2,16 @@
 require 'spec_helper'
 
 describe Institution do
-  it "has a valid factory"
+  it "has a valid factory" do
     FactoryGirl.create(:institution).should be_valid
-  it "is invalid without an email"
-  it "is invalid without a name"
-  it "is invalid without a phone"
+  end
+  it "is invalid without an email" do
+    FactoryGirl.build(:institution, email: nil).should_not be_valid
+  end
+  it "is invalid without a name" do
+    FactoryGirl.build(:institution, name: nil).should_not be_valid
+  end
+  it "is invalid without a phone" do
+    FactoryGirl.build(:institution, phone: nil).should_not be_valid
+  end
 end
