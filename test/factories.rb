@@ -17,11 +17,11 @@ FactoryGirl.define do
     cap             '12345'
   end
 
-  factory :institution do
-    name  'Comune di Manduria'
-    email
-    phone '0999794561'
-  end
+#  factory :institution do
+#    name  'Comune di Manduria'
+#    email
+#    phone '0999794561'
+#  end
 
   factory :project do
     name        'Project1'
