@@ -2,6 +2,10 @@
 require 'spec_helper'
 
 describe User do
+  before do
+    ['SuperAdmin', 'Admin', 'User'].each { |rolename| FactoryGirl.create(:role, name: rolename) }
+  end
+
   it "has a valid factory" do
     FactoryGirl.create(:user).should be_valid
   end
@@ -12,9 +16,11 @@ describe User do
     FactoryGirl.build(:user, password: nil).should_not be_valid
   end
   it "is invalid without a password_confirmation" do
+    FactoryGirl.build(:user, password_confirmation: nil).should_not be_valid
+  end
+  it "is invalid without a phone" do
     FactoryGirl.build(:user, phone: nil).should_not be_valid
   end
-  it "is invalid without a phone"
   it "is invalid without an address"
   it "is invalid without a cap"
   it "is invalid without a city"
