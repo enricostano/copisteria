@@ -23,13 +23,13 @@ FactoryGirl.define do
 #    phone '0999794561'
 #  end
 
-  factory :project do
-    name        'Project1'
-    institution
-    start       '2012-08-08' 
-    stop        '2012-08-10'
-    price       '10'
-  end
+  #factory :project do
+    #name        'Project1'
+    #institution
+    #start       '2012-08-08' 
+    #stop        '2012-08-10'
+    #price       '10'
+  #end
 
   factory :order do
     user
