@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :phone, :address, :cap, :city, :partitaiva, :role_ids, :ragionesociale
   
-  validates :phone, :address, :cap, :city, :partitaiva, :ragionesociale, :presence => true
+  validates :phone, :address, :cap, :city, :partitaiva, :ragionesociale, :password_confirmation, :presence => true
   validates :cap, :length => { :is => 5 }
   validates :partitaiva, :length => { :is => 11 }
   validates :partitaiva, :cap, :numericality => { :only_integer => true }
@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
 
   before_save :setup_role
 
-  def role?(role)
-    return !!self.roles.find_by_name(role.to_s.camelize)
-  end
+  #def role?(role)
+    #return !!self.roles.find_by_name(role.to_s.camelize)
+  #end
 
   def any_role?(*roles)
     return roles.any? { |r| self.roles.map(&:name).include?(r.to_s.camelize) }
