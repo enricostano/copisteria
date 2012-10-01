@@ -31,9 +31,6 @@ gem 'jquery-rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
 # To use debugger
 # gem 'debugger'
 
@@ -55,4 +52,9 @@ group :test do
   gem 'cucumber-rails', :require => false
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+end
+
+group :development do
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
