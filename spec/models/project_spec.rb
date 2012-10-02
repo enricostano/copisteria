@@ -48,11 +48,19 @@ describe Project do
     Project.nextbyinstitution[institutionB].first.stop.should > Date.today
   end
   it "verify if is referred by any line_items before to be destroyed" do
+    ['SuperAdmin', 'Admin', 'User'].each { |rolename| FactoryGirl.create(:role, name: rolename) }
+    user = FactoryGirl.create(:user)
     institution = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
     project = FactoryGirl.create(:project,
                                  start: Date.today - 2.week,
                                  stop: Date.today + 1.week,
                                  institution: institution)
+    order = FactoryGirl.create(:order,
+                               user: user)
+    line_item = FactoryGirl.create(:line_item,
+                                   order: order,
+                                   project: project)
+    project.destroy.should be false
   end
 
 end

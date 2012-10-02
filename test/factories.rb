@@ -31,10 +31,10 @@ FactoryGirl.define do
     #price       '10'
   #end
 
-  factory :order do
-    user
-    authorized  'false'
-  end
+  #factory :order do
+    #user
+    #authorized  'false'
+  #end
 
   #factory :line_item do
     #order
