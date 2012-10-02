@@ -27,18 +27,32 @@ describe Project do
     institutionA = FactoryGirl.create(:institution, name: 'Comune di Manduria')
     institutionB = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
     project1 = FactoryGirl.create(:project,
+                                  name: 'project1',
                                   start: Date.today - 2.week,
                                   stop: Date.today - 1.week,
                                   institution: institutionA)
     project2 = FactoryGirl.create(:project,
+                                  name: 'project2',
                                   start: Date.today - 2.week,
                                   stop: Date.today + 1.week,
                                   institution: institutionA)
     project3 = FactoryGirl.create(:project,
+                                  name: 'project3',
                                   start: Date.today - 1.week,
                                   stop: Date.today + 2.week,
                                   institution: institutionB)
     Project.nextbyinstitution.should have(2).items
+    Project.nextbyinstitution[institutionA].first.name.should eq 'project2'
+    Project.nextbyinstitution[institutionB].first.name.should eq 'project3'
+    Project.nextbyinstitution[institutionA].first.stop.should > Date.today
+    Project.nextbyinstitution[institutionB].first.stop.should > Date.today
   end
-  it "verify if is referred by any line_items before to be destroyed"
+  it "verify if is referred by any line_items before to be destroyed" do
+    institution = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
+    project = FactoryGirl.create(:project,
+                                 start: Date.today - 2.week,
+                                 stop: Date.today + 1.week,
+                                 institution: institution)
+  end
+
 end

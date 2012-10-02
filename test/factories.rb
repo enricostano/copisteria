@@ -36,11 +36,11 @@ FactoryGirl.define do
     authorized  'false'
   end
 
-  factory :line_item do
-    order
-    project
-    price     '10'
-    quantity  '1'
-  end
+  #factory :line_item do
+    #order
+    #project
+    #price     '10'
+    #quantity  '1'
+  #end
 
 end
