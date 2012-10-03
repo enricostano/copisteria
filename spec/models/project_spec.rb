@@ -6,7 +6,7 @@ describe Project do
     FactoryGirl.create(:project).should be_valid
   end
   it "is invalid without a name" do
-    FactoryGirl.build(:role, name: nil).should_not be_valid
+    FactoryGirl.build(:project, name: nil).should_not be_valid
   end
   it "is invalid without a start" do
     FactoryGirl.build(:project, start: nil).should_not be_valid
