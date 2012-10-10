@@ -10,7 +10,7 @@
     <th>Address</th>
     <th>City</th>
     <th>CAP</th>
-    <% if current_user.role? :super_admin %>
+    <% if current_user.any_role? :super_admin %>
       <th>Roles</th>
     <% end %>
   </tr>
@@ -25,7 +25,7 @@
     <td><%= user.address %></td>
     <td><%= user.city %></td>
     <td><%= user.cap %></td>
-    <% if current_user.role? :super_admin %>
+    <% if current_user.any_role? :super_admin %>
       <td>
         <% user.roles.each do |role| %>
           <%= role.name %>
