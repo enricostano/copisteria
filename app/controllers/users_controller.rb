@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @users = User.all
+    # commented out because of load_and_authorize_resource
+    #@users = User.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
   # GET /admin/users/new
   # GET /admin/users/new.json
   def new
-    @user = User.new
+    #@user = User.new
     @roles = Role.all
 
     respond_to do |format|
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
   # POST /admin/users
   # POST /admin/users.json
   def create
-    @user = User.new(params[:user])
+    #@user = User.new(params[:user])
     @roles = Role.all
 
     respond_to do |format|
