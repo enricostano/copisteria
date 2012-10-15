@@ -8,8 +8,7 @@ describe UsersController do
         should_authorize(:index, User)
       end
       it "populates an array of users" do
-        @user = mock_model(User)
-        User.should_receive(:all).and_return(@user)
+        User.should_receive(:accessible_by).and_return(@user)
         get :index
       end
       it "renders the :index view" do
@@ -20,14 +19,13 @@ describe UsersController do
   
     describe "GET #show" do
       before(:each) do
-        @user = mock_model(User)
-        should_authorize(:show, @user)
+        should_authorize(:show, User)
+        User.should_receive(:find).with("1").and_return(@user)
       end
     
       it "assigns the requested user to @user" do
-        # receive 1 call from CanCan #authorize! and 1 from the controller, so... twice
-        User.should_receive(:find).with("1").twice.and_return(@user)
         get :show, id: "1"
+        response.should be_success
       end
       it "renders the :show template" do
         get :show, id: "1"
@@ -36,19 +34,16 @@ describe UsersController do
     end
     
     describe "GET #new" do
-      before do
-        @user = User.new
-        should_authorize(:new, @user)
-        User.stub(:new).and_return(@user)
+      before(:each) do
+        should_authorize(:new, User)
+        User.should_receive(:new).and_return(@user)
       end
       it "assigns a new User to @user" do
-        User.should_receive(:new).and_return(@user)
         get :new
         response.should be_success
       end
       it "populates an array of roles in @roles" do
-        role = mock_model(Role)
-        Role.should_receive(:all).and_return(role)
+        Role.should_receive(:all).and_return(@roles)
         get :new
       end
       it "renders the :new template" do
@@ -56,19 +51,33 @@ describe UsersController do
         response.should render_template :new
       end
     end
-    
+   
+    describe "edit" do
+      before(:each) do
+        should_authorize(:edit, User)
+        User.should_receive(:find).with("1").and_return(@user)
+      end
+
+      it "assigns the requested user to @user" do
+        get :edit, id: "1"
+        response.should be_success
+      end
+      it "populate @roles with all available roles" do
+        Role.should_receive(:all).and_return(@roles)
+        get :edit, id: "1"
+      end
+    end
+
     describe "POST #create" do
       before do
-        @user = User.new
-        should_authorize(:create, @user)
-        User.stub(:new).with("email" => "puppa@puppa.pup").and_return(@user)
+        #@user = User.new
+        should_authorize(:create, User)
+        #User.stub(:new).with("email" => "puppa@puppa.pup").and_return(@user)
       end
-      it "should pass parameters to @user" do
-        #User.stub!(:create).with({ :email => 'puppa@puppa.pup' }).and_return( @user = mock_model(User, email: 'puppa@puppa.pup') )
-        should_authorize(:create, mock_model(User, :email => 'puppa@puppa.pup'))
-        #User.should_receive(:create).with({ :email => 'puppa@puppa.pup' }).and_return(@user)
+      it "should create a new User with some parameters" do
+        User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
+        @user.should_receive(:save).and_return(true)
         post :create, :user => { :email => 'puppa@puppa.pup' }
-        assigns[:user].email.should eq('puppa@puppa.pup')
       end
       it "populates an array of roles in @roles" do
         role = mock_model(Role)
@@ -77,17 +86,19 @@ describe UsersController do
       end
       
       context "with valid attributes" do
-        before do
-          User.stub!(:valid?).and_return(true)
+        it "redirects to the user page" do
+          User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
+          @user.should_receive(:save).and_return(true)
+          post :create, :user => { :email => 'puppa@puppa.pup' }
+          response.should redirect_to(@user)
         end
-        it "saves the new user in the database"
-          #assigns[:user].should be_new_record
-        it "redirects to the user page"
       end
 
       context "with invalid attributes" do
-        it "does not save the new user in the database"
-        it "re-renders the :new template"
+        it "re-renders the :new template" do
+          post :create, :user => { :email => 'puppa@puppa.pup' }
+          response.should render_template :new
+        end
       end
     end
 
@@ -95,7 +106,7 @@ describe UsersController do
       before(:each) do
         @user = mock_model(User)
         should_authorize(:update, @user)
-        User.should_receive(:find).with("1").twice.and_return(@user)
+        User.should_receive(:find).with("1").and_return(@user)
       end
       it "delete :password and :password_confirmation params if :password is blank" do
         @user.should_receive(:update_attributes).with("role_ids" => {"1"=> "1"}).and_return(true)
@@ -107,26 +118,32 @@ describe UsersController do
         @user.should_receive(:update_attributes).with("role_ids" => []).and_return(true)
         get :update, id: "1", :user => { "role_ids" => nil }
       end
-      it "assigns the requested user to @user" do
-        @user.should_receive(:update_attributes).with("role_ids" => []).and_return(true)
-        # it's already checked in the before...
-        get :update, id: "1", :user => {}
-      end
       
       context "with valid params" do
-        before(:each) do
-          @user.should_receive(:update_attributes).with("role_ids" => []).and_return(true)
-          @user.stub!(:valid?).and_return(true)
-        end
-        it "update attributes with params" do
-          @user.should_receive(:valid?).and_return(true)
+        it "redirects to the user page with notice" do
+          @user.should_receive(:update_attributes).and_return(true)
           get :update, id: "1", :user => {}
+          flash[:notice].should_not be_nil
+          #response.should redirect_to(@user)
         end
-        it "redirects to the user page with notice"
       end
       
       context "with invalid params" do
-        it "re-renders the :edit template"
+        it "renders the :edit template" do
+          @user.should_receive(:update_attributes).and_return(false)
+          get :update, id: "1", :user => {}
+          response.should render_template :edit
+        end
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it "delete the given project" do
+        should_authorize(:destroy, User)
+        User.should_receive(:find).with("1").and_return(@user)
+        @user.should_receive(:destroy).and_return(true)
+        get :destroy, id: "1"
+        response.should redirect_to(users_url)
       end
     end
   end
