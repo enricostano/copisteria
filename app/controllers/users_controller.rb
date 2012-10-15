@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @roles = Role.all
   end
 
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
     params[:user][:role_ids] ||= []
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|
