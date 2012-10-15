@@ -56,7 +56,7 @@
     <%= f.text_field :phone %>
   </div>
   
-  <% if current_user.role? :super_admin %>
+  <% if current_user.any_role? :super_admin %>
     <div class="field">
       <%= f.label :roles %><br />
       <% @roles.each do |role| %>
