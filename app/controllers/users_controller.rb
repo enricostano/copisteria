@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    params[:user][:role_ids] ||= []
+    params[:user][:role_ids] ||= [] 
     #@user = User.find(params[:id])
 
     respond_to do |format|

@@ -25,7 +25,7 @@ describe UsersController do
     
       it "assigns the requested user to @user" do
         get :show, id: "1"
-        response.should be_success
+        assigns[:user].should eq(@user)
       end
       it "renders the :show template" do
         get :show, id: "1"
@@ -35,16 +35,18 @@ describe UsersController do
     
     describe "GET #new" do
       before(:each) do
-        should_authorize(:new, User)
+        @user = mock_model(User)
+        should_authorize(:new, @user)
         User.should_receive(:new).and_return(@user)
       end
       it "assigns a new User to @user" do
         get :new
-        response.should be_success
+        assigns[:user].should eq(@user)
       end
       it "populates an array of roles in @roles" do
-        Role.should_receive(:all).and_return(@roles)
+        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
         get :new
+        assigns[:roles].should eq(@roles)
       end
       it "renders the :new template" do
         get :new
@@ -52,7 +54,7 @@ describe UsersController do
       end
     end
    
-    describe "edit" do
+    describe "#edit" do
       before(:each) do
         should_authorize(:edit, User)
         User.should_receive(:find).with("1").and_return(@user)
@@ -60,34 +62,36 @@ describe UsersController do
 
       it "assigns the requested user to @user" do
         get :edit, id: "1"
-        response.should be_success
+        assigns[:user].should eq(@user)
       end
       it "populate @roles with all available roles" do
-        Role.should_receive(:all).and_return(@roles)
+        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
         get :edit, id: "1"
+        assigns[:roles].should eq(@roles)
       end
     end
 
     describe "POST #create" do
       before do
-        #@user = User.new
-        should_authorize(:create, User)
-        #User.stub(:new).with("email" => "puppa@puppa.pup").and_return(@user)
-      end
-      it "should create a new User with some parameters" do
+        @user = mock_model(User)
+        should_authorize(:create, @user)
         User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
+        #@user.should_receive(:save).and_return(true)
+      end
+      it "assigns a new User to @user with some parameters" do
         @user.should_receive(:save).and_return(true)
         post :create, :user => { :email => 'puppa@puppa.pup' }
+        assigns[:user].should eq(@user)
       end
       it "populates an array of roles in @roles" do
-        role = mock_model(Role)
-        Role.should_receive(:all).and_return(role)
+        @user.should_receive(:save).and_return(true)
+        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
         post :create, :user => { :email => 'puppa@puppa.pup' }
+        assigns[:roles].should eq(@roles)
       end
       
       context "with valid attributes" do
         it "redirects to the user page" do
-          User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
           @user.should_receive(:save).and_return(true)
           post :create, :user => { :email => 'puppa@puppa.pup' }
           response.should redirect_to(@user)
@@ -96,6 +100,7 @@ describe UsersController do
 
       context "with invalid attributes" do
         it "re-renders the :new template" do
+          @user.should_receive(:save).and_return(false)
           post :create, :user => { :email => 'puppa@puppa.pup' }
           response.should render_template :new
         end
@@ -117,6 +122,7 @@ describe UsersController do
       it "assigns an empty hash to :role_ids param if it is nil" do
         @user.should_receive(:update_attributes).with("role_ids" => []).and_return(true)
         get :update, id: "1", :user => { "role_ids" => nil }
+        assigns["params[:user][:role_ids]"].should == []
       end
       
       context "with valid params" do
