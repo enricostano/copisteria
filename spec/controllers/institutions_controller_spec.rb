@@ -123,8 +123,20 @@ describe InstitutionsController do
     end
     
     describe "DELETE #destroy" do
-      it "assigns the requested institution to @institution"
-      it "redirect to :index template"
+      before(:each) do
+        @institution = mock_model(Institution)
+        should_authorize(:destroy, @institution)
+        Institution.should_receive(:find).with("1").and_return(@institution)
+        @institution.should_receive(:destroy).and_return(true)
+        get :destroy, id: "1"
+      end
+        
+      it "assigns the requested institution to @institution" do
+        assigns(:institution).should eq(@institution)
+      end
+      it "redirect to :index action" do
+        response.should redirect_to(institutions_url)
+      end
     end
   end
 end
