@@ -149,12 +149,18 @@ describe UsersController do
     end
 
     describe "DELETE #destroy" do
-      it "delete the given project and redirect to User index view" do
+      before(:each) do
         @user = mock_model(User)
         should_authorize(:destroy, @user)
         User.should_receive(:find).with("1").and_return(@user)
         @user.should_receive(:destroy).and_return(true)
         get :destroy, id: "1"
+      end
+
+      it "assigns the requested user to @user" do
+        assigns(:user).should eq(@user)
+      end
+      it "redirect to User index view" do
         response.should redirect_to(users_url)
       end
     end
