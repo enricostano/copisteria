@@ -56,7 +56,8 @@ describe UsersController do
    
     describe "#edit" do
       before(:each) do
-        should_authorize(:edit, User)
+        @user = mock_model(User)
+        should_authorize(:edit, @user)
         User.should_receive(:find).with("1").and_return(@user)
         Role.should_receive(:all).and_return(@roles = mock("All the roles"))
         get :edit, id: "1"
