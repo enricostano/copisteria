@@ -9,6 +9,7 @@ describe UsersController do
         User.should_receive(:accessible_by).and_return(@users = mock("All the users the user can see"))
         get :index
       end
+
       it "populates an array of users in @users" do
         assigns(:users).should eq(@users)
       end
@@ -40,6 +41,7 @@ describe UsersController do
         Role.should_receive(:all).and_return(@roles = mock("All the roles"))
         get :new
       end
+
       it "assigns a new User to @user" do
         assigns[:user].should eq(@user)
       end
@@ -55,15 +57,14 @@ describe UsersController do
       before(:each) do
         should_authorize(:edit, User)
         User.should_receive(:find).with("1").and_return(@user)
+        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
+        get :edit, id: "1"
       end
 
       it "assigns the requested user to @user" do
-        get :edit, id: "1"
         assigns[:user].should eq(@user)
       end
       it "populate @roles with all available roles" do
-        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
-        get :edit, id: "1"
         assigns[:roles].should eq(@roles)
       end
     end
