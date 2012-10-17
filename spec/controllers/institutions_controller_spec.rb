@@ -25,6 +25,7 @@ describe InstitutionsController do
         Institution.should_receive(:find).with("1").and_return(@institution)
         get :show, id: "1"
       end
+
       it "assigns the requested institution to @institution" do
         assigns(:institution).should eq(@institution)
       end
@@ -34,8 +35,19 @@ describe InstitutionsController do
     end
 
     describe "GET #new" do
-      it "assigns a new institution to @institution"
-      it "renders the :new template"
+      before(:each) do
+        @institution = mock_model(Institution)
+        should_authorize(:new, @institution)
+        Institution.should_receive(:new).and_return(@institution)
+        get :new
+      end
+
+      it "assigns a new institution to @institution" do
+        assigns(:institution).should eq(@institution)
+      end
+      it "renders the :new template" do
+        response.should render_template :new
+      end
     end
 
     describe "GET #edit" do
