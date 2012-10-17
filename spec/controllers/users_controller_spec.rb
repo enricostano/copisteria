@@ -75,10 +75,10 @@ describe UsersController do
       before do
         @user = mock_model(User)
         should_authorize(:create, @user)
+        User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
       end
       context "with valid attributes" do
         before do
-          User.should_receive(:new).with("email" => "puppa@puppa.pup").and_return(@user)
           @user.should_receive(:save).and_return(true)
         end
         it "assigns a new User to @user with some parameters" do
@@ -111,39 +111,46 @@ describe UsersController do
         should_authorize(:update, @user)
         User.should_receive(:find).with("1").and_return(@user)
       end
-      it "delete :password and :password_confirmation params if :password is blank" do
-        @user.should_receive(:update_attributes).with("role_ids" => {"1"=> "1"}).and_return(true)
-        get :update, id: "1", :user => { "password" => nil,
-                                         "password_confirmation" => "confirmation",
-                                         "role_ids" => {"1" => "1"} }
-      end
-      it "assigns an empty hash to :role_ids param if it is nil" do
-        @user.should_receive(:update_attributes).with("role_ids" => []).and_return(true)
-        get :update, id: "1", :user => { "role_ids" => nil }
-        assigns["params[:user][:role_ids]"].should == []
-      end
+
+      context "with valid parameters" do
+        before(:each) do
+          @user.should_receive(:update_attributes).with("email" => "puppa@puppa.pup").and_return(true)
+          get :update, id: "1", :user => { :email => "puppa@puppa.pup" }
+        end
       
-      context "with valid params" do
+        it "assigns the requested user to @user" do
+          assigns(:user).should eq(@user)
+        end
+        #it "assigns an empty hash to :role_ids param if it is nil" do
+          #get :update, id: "1", :user => { "role_ids" => nil }
+          #assigns["params[:user][:role_ids]"].should == []
+        #end
         it "redirects to the user page with notice" do
-          @user.should_receive(:update_attributes).and_return(true)
-          get :update, id: "1", :user => {}
           flash[:notice].should_not be_nil
-          #response.should redirect_to(@user)
+          response.should redirect_to(@user)
         end
       end
       
       context "with invalid params" do
+        before(:each) do
+          @user.should_receive(:update_attributes).with("email" => "puppa@puppa.pup").and_return(false)
+          get :update, id: "1", :user => { "password" => nil,
+                                         "password_confirmation" => "confirmation",
+                                         "email" => "puppa@puppa.pup" }
+        end
+        it "delete :password and :password_confirmation params if :password is blank" do
+          assigns(params).should eq({ "email" => "puppa@puppa.pup" })
+        end
         it "renders the :edit template" do
-          @user.should_receive(:update_attributes).and_return(false)
-          get :update, id: "1", :user => {}
           response.should render_template :edit
         end
       end
     end
 
     describe "DELETE #destroy" do
-      it "delete the given project" do
-        should_authorize(:destroy, User)
+      it "delete the given project and redirect to User index view" do
+        @user = mock_model(User)
+        should_authorize(:destroy, @user)
         User.should_receive(:find).with("1").and_return(@user)
         @user.should_receive(:destroy).and_return(true)
         get :destroy, id: "1"
