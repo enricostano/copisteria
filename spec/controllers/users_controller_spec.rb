@@ -37,18 +37,16 @@ describe UsersController do
         @user = mock_model(User)
         should_authorize(:new, @user)
         User.should_receive(:new).and_return(@user)
+        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
+        get :new
       end
       it "assigns a new User to @user" do
-        get :new
         assigns[:user].should eq(@user)
       end
       it "populates an array of roles in @roles" do
-        Role.should_receive(:all).and_return(@roles = mock("All the roles"))
-        get :new
         assigns[:roles].should eq(@roles)
       end
       it "renders the :new template" do
-        get :new
         response.should render_template :new
       end
     end
