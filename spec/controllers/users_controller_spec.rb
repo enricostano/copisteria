@@ -89,7 +89,8 @@ describe UsersController do
         it "populates an array of roles in @roles" do
           assigns[:roles].should eq(@roles)
         end
-        it "redirects to the user page" do
+        it "redirects to the user page with notice" do
+          flash[:notice].should_not be_nil
           response.should redirect_to(@user)
         end
       end
