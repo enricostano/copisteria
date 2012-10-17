@@ -61,13 +61,33 @@ describe InstitutionsController do
     end
 
     describe "POST #create" do
+      before(:each) do
+        @institution = mock_model(Institution)
+        should_authorize(:create, @institution)
+        Institution.should_receive(:new).with("name" => "Comune di Puppa").and_return(@institution)
+      end
+
       context "with valid attributes" do
-        it "assigns the requested institution to @institution"
-        it "redirect to the institution page with notice"
+        before(:each) do
+          @institution.should_receive(:save).and_return(true)
+          get :create, institution: { "name" => "Comune di Puppa" }
+        end
+
+        it "assigns a new Institution to @institution with some params" do
+          assigns(:institution).should eq(@institution)
+        end
+        it "redirect to the institution page with notice" do
+          response.should redirect_to(@institution)
+          flash[:notice].should_not be_nil
+        end
       end
 
       context "with invalid attributes" do
-        it "render :new template"
+        it "render :new template" do
+          @institution.should_receive(:save).and_return(false)
+          get :create, institution: { "name" => "Comune di Puppa" }
+          response.should render_template :new
+        end
       end
     end
 
