@@ -78,18 +78,16 @@ describe UsersController do
       context "with valid attributes" do
         before do
           @user.should_receive(:save).and_return(true)
+          Role.should_receive(:all).and_return(@roles = mock("All the roles"))
+          post :create, :user => { :email => 'puppa@puppa.pup' }
         end
         it "assigns a new User to @user with some parameters" do
-          post :create, :user => { :email => 'puppa@puppa.pup' }
           assigns[:user].should eq(@user)
         end
         it "populates an array of roles in @roles" do
-          Role.should_receive(:all).and_return(@roles = mock("All the roles"))
-          post :create, :user => { :email => 'puppa@puppa.pup' }
           assigns[:roles].should eq(@roles)
         end
         it "redirects to the user page" do
-          post :create, :user => { :email => 'puppa@puppa.pup' }
           response.should redirect_to(@user)
         end
       end
