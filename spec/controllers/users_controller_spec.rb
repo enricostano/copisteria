@@ -134,6 +134,7 @@ describe UsersController do
                                            "password_confirmation" => "confirmation",
                                            "email" => "puppa@puppa.pup" }
         end
+        
         it "delete :password and :password_confirmation params if :password is blank" do
           controller.params[:user][:password].should be_nil
           controller.params[:user][:password_confirmation].should be_nil
