@@ -20,7 +20,8 @@ describe UsersController do
   
     describe "GET #show" do
       before(:each) do
-        should_authorize(:show, User)
+        @user = mock_model(User)
+        should_authorize(:show, @user)
         User.should_receive(:find).with("1").and_return(@user)
         get :show, id: "1"
       end
