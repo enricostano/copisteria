@@ -6,13 +6,13 @@ describe UsersController do
     describe "GET #index" do
       before(:each) do
         should_authorize(:index, User)
-      end
-      it "populates an array of users" do
-        User.should_receive(:accessible_by).and_return(@user)
+        User.should_receive(:accessible_by).and_return(@users = mock("All the users the user can see"))
         get :index
+      end
+      it "populates an array of users in @users" do
+        assigns(:users).should eq(@users)
       end
       it "renders the :index view" do
-        get :index
         response.should render_template :index
       end
     end
