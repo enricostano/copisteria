@@ -92,13 +92,33 @@ describe InstitutionsController do
     end
 
     describe "PUT #update" do
+      before(:each) do
+        @institution = mock_model(Institution)
+        should_authorize(:update, @institution)
+        Institution.should_receive(:find).with("1").and_return(@institution)
+      end
+
       context "with valid parameters" do
-        it "assigns the requested institution to @institution"
-        it "redirect to institution page with notice"
+        before(:each) do
+          @institution.should_receive(:update_attributes).with("name" => "Comune di Puppa").and_return(true)
+          get :update, id: "1", institution: { "name" => "Comune di Puppa" }
+        end
+
+        it "assigns the requested institution to @institution" do
+          assigns(:institution).should eq(@institution)
+        end
+        it "redirect to institution page with notice" do
+          response.should redirect_to(@institution)
+          flash[:notice].should_not be_nil
+        end
       end
 
       context "with invalid parameters" do
-        it "renders de :edit template"
+        it "renders de :edit template" do
+          @institution.should_receive(:update_attributes).with("name" => "Comune di Puppa").and_return(false)
+          get :update, id: "1", institution: { "name" => "Comune di Puppa" }
+          response.should render_template :edit
+        end
       end
     end
     
