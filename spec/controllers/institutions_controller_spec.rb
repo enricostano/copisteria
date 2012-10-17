@@ -51,7 +51,13 @@ describe InstitutionsController do
     end
 
     describe "GET #edit" do
-      it "assigns the requested institution to @institution"
+      it "assigns the requested institution to @institution" do
+        @institution = mock_model(Institution)
+        should_authorize(:edit, @institution)
+        Institution.should_receive(:find).with("1").and_return(@institution)
+        get :edit, id: "1"
+        assigns(:institution).should eq(@institution)
+      end
     end
 
     describe "POST #create" do
