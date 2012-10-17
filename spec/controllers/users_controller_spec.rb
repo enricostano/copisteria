@@ -21,14 +21,13 @@ describe UsersController do
       before(:each) do
         should_authorize(:show, User)
         User.should_receive(:find).with("1").and_return(@user)
+        get :show, id: "1"
       end
     
       it "assigns the requested user to @user" do
-        get :show, id: "1"
         assigns[:user].should eq(@user)
       end
       it "renders the :show template" do
-        get :show, id: "1"
         response.should render_template :show
       end
     end
