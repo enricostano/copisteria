@@ -133,13 +133,14 @@ describe UsersController do
       
       context "with invalid params" do
         before(:each) do
-          @user.should_receive(:update_attributes).with("email" => "puppa@puppa.pup").and_return(false)
+          @user.should_receive(:update_attributes).and_return(false)
           get :update, id: "1", :user => { "password" => nil,
-                                         "password_confirmation" => "confirmation",
-                                         "email" => "puppa@puppa.pup" }
+                                           "password_confirmation" => "confirmation",
+                                           "email" => "puppa@puppa.pup" }
         end
         it "delete :password and :password_confirmation params if :password is blank" do
-          assigns(params).should eq({ "email" => "puppa@puppa.pup" })
+          controller.params[:user][:password].should be_nil
+          controller.params[:user][:password_confirmation].should be_nil
         end
         it "renders the :edit template" do
           response.should render_template :edit
