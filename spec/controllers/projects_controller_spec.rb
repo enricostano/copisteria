@@ -59,13 +59,31 @@ describe ProjectsController do
     end
 
     describe "POST #create" do
+      before(:each) do
+        should_authorize(:create, project)
+        Project.should_receive(:new).with("name" => "Diga sul fiume Chidro").and_return(project)
+      end
+
       context "with valid attributes" do
-        it "assigns a new Project to @project with some params"
-        it "redirect to the project page with notice"
+        before(:each) do
+          project.should_receive(:save).and_return(true)
+          get :create, project: { "name" => "Diga sul fiume Chidro" }
+        end
+
+        it "assigns a new Project to @project with some params" do
+          assigns(:project).should eq(project)
+        end
+        it { should redirect_to(project) }
+        it { flash[:notice].should_not be_nil }
       end
 
       context "with invalid attributes" do
-        it "renders the :new template"
+        before(:each) do
+          project.should_receive(:save).and_return(false)
+          get :create, project: { "name" => "Diga sul fiume Chidro" }
+        end
+
+        it { should render_template :new }
       end
     end
 
