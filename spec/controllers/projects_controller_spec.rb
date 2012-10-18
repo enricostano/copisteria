@@ -22,13 +22,33 @@ describe ProjectsController do
     end
 
     describe "GET #show" do
-      it "assigns the requested Project to @project"
-      it "renders the #show template"
+      before(:each) do
+        should_authorize(:show, project)
+        Project.should_receive(:find).with("1").and_return(project)
+        get :show, id: "1"
+      end
+
+      it "assigns the requested Project to @project" do
+        assigns(:project).should eq(project)
+      end
+      it "renders the #show template" do
+        response.should render_template :show
+      end
     end
 
     describe "GET #new" do
-      it "assigns a new Project to @project"
-      it "renders the :new template"
+      before(:each) do
+        should_authorize(:new, project)
+        Project.should_receive(:new).and_return(project)
+        get :new
+      end
+
+      it "assigns a new Project to @project" do
+        assigns(:project).should eq(project)
+      end
+      it "renders the :new template" do
+        response.should render_template :new
+      end
     end
 
     describe "GET #edit" do
