@@ -88,13 +88,31 @@ describe ProjectsController do
     end
 
     describe "PUT #update" do
+      before(:each) do
+        should_authorize(:update, project)
+        Project.should_receive(:find).with("1").and_return(project)
+      end
+
       context "with valid params" do
-        it "assigns the requested Project to @project"
-        it "redirects to the project page with notice"
+        before(:each) do
+          project.should_receive(:update_attributes).with("name" => "Diga sul fiume Chidro").and_return(true)
+          get :update, id: "1", project: { "name" => "Diga sul fiume Chidro" }
+        end
+
+        it "assigns the requested Project to @project" do
+          assigns(:project).should eq(project)
+        end
+        it { should redirect_to(project) }
+        it { flash[:notice].should_not be_nil }
       end
 
       context "with invalid params" do
-        it "renders the :edit template"
+        before(:each) do
+          project.should_receive(:update_attributes).with("name" => "Diga sul fiume Chidro").and_return(false)
+          get :update, id: "1", project: { "name" => "Diga sul fiume Chidro" }
+        end
+
+        it { should render_template :edit }
       end
     end
 
