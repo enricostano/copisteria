@@ -16,9 +16,7 @@ describe ProjectsController do
       it "assigns a list of Projects to @projects" do
         assigns(:projects).should eq(projects)
       end
-      it "renders the #index template" do
-        response.should render_template :index
-      end
+      it { should render_template :index }
     end
 
     describe "GET #show" do
@@ -31,9 +29,7 @@ describe ProjectsController do
       it "assigns the requested Project to @project" do
         assigns(:project).should eq(project)
       end
-      it "renders the #show template" do
-        response.should render_template :show
-      end
+      it { should render_template :show }
     end
 
     describe "GET #new" do
