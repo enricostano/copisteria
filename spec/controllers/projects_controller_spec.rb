@@ -46,13 +46,20 @@ describe ProjectsController do
       it "assigns a new Project to @project" do
         assigns(:project).should eq(project)
       end
-      it "renders the :new template" do
-        response.should render_template :new
-      end
+      it { should render_template :new }
     end
 
     describe "GET #edit" do
-      it "assigns the requested Project to @project"
+      before(:each) do
+        should_authorize(:edit, project)
+        Project.should_receive(:find).with("1").and_return(project)
+        get :edit, id: "1"
+      end
+
+      it "assigns the requested Project to @project" do
+        assigns(:project).should eq(project)
+      end
+      it { should render_template :edit }
     end
 
     describe "POST #create" do
