@@ -117,8 +117,17 @@ describe ProjectsController do
     end
 
     describe "DELETE #destroy" do
-      it "assigns the requested Project to @project"
-      it "redirects to #index action"
+      before(:each) do
+        should_authorize(:destroy, project)
+        Project.should_receive(:find).with("1").and_return(project)
+        project.should_receive(:destroy).and_return(false)
+        get :destroy, id: "1"
+      end
+        
+      it "assigns the requested Project to @project" do
+        assigns(:project).should eq(project)
+      end
+      it { should redirect_to(projects_url) }
     end
   end
 end
