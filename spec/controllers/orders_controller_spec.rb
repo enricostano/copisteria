@@ -5,6 +5,7 @@ describe OrdersController do
   context "if the user pass all the authorizations" do
     let(:orders) { mock("All the orders") }
     let(:order) { mock_model(Order) }
+    let(:user) { mock_model(User) }
     
     describe "GET #index" do
       before(:each) do
@@ -59,19 +60,30 @@ describe OrdersController do
     end
 
     describe "POST #create" do
+
+      
       before(:each) do
+        session[:cart] = { "1" => "1" }
+        controller.stub!(:current_user).and_return(user)
         should_authorize(:create, order)
-        Order.should_receive(:new).with("name" => "Diga sul fiume Chidro").and_return(order)
+        Order.should_receive(:new).and_return(order)
       end
 
       context "with valid attributes" do
         before(:each) do
+          order.should_receive(:add_line_items_to_order_from_cart).with("1" => "1").and_return(true)
           order.should_receive(:save).and_return(true)
-          get :create, order: { "name" => "Diga sul fiume Chidro" }
+          get :create
         end
 
         it "assigns a new Order to @order with some params" do
           assigns(:order).should eq(order)
+        end
+        it "assigns the cart in the session to cart" do
+          assigns(:cart).should == { "1" => "1" }
+        end
+        it "assigns the current user to order.user" do
+          assigns(:order.user).should eq(user)
         end
         it { should redirect_to(order) }
         it { flash[:notice].should_not be_nil }
