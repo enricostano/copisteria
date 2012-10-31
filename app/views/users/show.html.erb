@@ -25,7 +25,7 @@
   <%= @user.city %>
 </p>
 
-<% if current_user.role? :super_admin %>
+<% if current_user.any_role? :super_admin %>
   <p>
     <b>Roles:</b>
       <% @user.roles.each do |role| %>
