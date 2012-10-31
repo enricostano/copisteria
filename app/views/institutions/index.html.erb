@@ -1,9 +1,9 @@
-<h1>Listing institutions</h1>
+<h1>Elenco enti</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Phone</th>
+    <th><%=t :name %></th>
+    <th><%=t :phone %></th>
     <th>Email</th>
     <th></th>
     <th></th>
@@ -15,13 +15,13 @@
     <td><%= institution.name %></td>
     <td><%= institution.phone %></td>
     <td><%= institution.email %></td>
-    <td><%= link_to 'Show', institution %></td>
-    <td><%= link_to 'Edit', edit_institution_path(institution) %></td>
-    <td><%= link_to 'Destroy', institution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to t(:show), institution %></td>
+    <td><%= link_to t(:edit), edit_institution_path(institution) %></td>
+    <td><%= link_to t(:destroy), institution, method: :delete, data: { confirm: t(:are_you_sure) } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Institution', new_institution_path %>
+<%= link_to t(:new_model, :model => Institution.model_name.human), new_institution_path %>
