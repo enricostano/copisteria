@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b><%=t :name %>:</b>
   <%= @institution.name %>
 </p>
 
 <p>
-  <b>Phone:</b>
+  <b><%=t :phone %>:</b>
   <%= @institution.phone %>
 </p>
 
@@ -16,5 +16,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_institution_path(@institution) %> |
-<%= link_to 'Back', institutions_path %>
+<%= link_to t(:edit), edit_institution_path(@institution) %> |
+<%= link_to t(:back), institutions_path %>
