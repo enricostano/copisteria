@@ -1,0 +1,13 @@
+it:
+  dashboard: Pannello di controllo
+  show: mostra
+  edit: modifica
+  destroy: elimina
+  name: Nome
+  phone: Telefono
+  new_model: nuovo %{model}
+  are_you_sure: Sei sicuro/a?
+
+  activerecord:
+    models:
+     institution: ente
