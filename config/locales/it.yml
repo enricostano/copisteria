@@ -16,6 +16,9 @@ it:
   activerecord:
     models:
       institution: ente
+      order: ordine
+      project: progetto
+      user: utente
     attributes:
       institution:
         name: nome
