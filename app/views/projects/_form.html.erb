@@ -1,8 +1,7 @@
 <%= form_for(@project) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
-
+      <h2><%=t 'activerecord.errors', :count => @project.errors.count %>:</h2>
       <ul>
       <% @project.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,23 +11,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label t(:name) %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :institution %><br />
+    <%= f.label t('activerecord.models.institution') %><br />
     <%= f.collection_select(:institution_id, Institution.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :start %><br />
+    <%= f.label t(:start) %><br />
     <%= f.date_select :start %>
   </div>
   <div class="field">
-    <%= f.label :stop %><br />
+    <%= f.label t(:stop) %><br />
     <%= f.date_select :stop %>
   </div>
   <div class="field">
-    <%= f.label :price %><br />
+    <%= f.label t(:price) %><br />
     <%= f.text_field :price %>
   </div>
   <div class="field">
