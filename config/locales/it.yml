@@ -4,6 +4,7 @@ it:
   show: mostra
   edit: modifica
   destroy: elimina
+  authorize: autorizza
   name: Nome
   phone: Telefono
   new_model: aggiungi %{model}
