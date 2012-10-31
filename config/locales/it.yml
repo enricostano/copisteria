@@ -37,3 +37,9 @@ it:
     sessions:
       user:
         signed_in: "Autenticazione eseguita con successo."
+
+  helpers:
+    submit:
+      create: "Crea %{model}"
+      update: "Modifica %{model}"
+      submit: "Salva %{model}"
