@@ -11,4 +11,20 @@ it:
 
   activerecord:
     models:
-     institution: ente
+      institution: ente
+    attributes:
+      institution:
+        name: nome
+        phone: telefono
+    errors:
+      one: "1 errore impedisce di salvare"
+      other: "%{count} errori impediscono di salvare"
+      models:
+        institution:
+          attributes:
+            name:
+              blank: "deve essere presente"
+            phone:
+              blank: "deve essere presente"
+            email:
+              blank: "deve essere presente"
