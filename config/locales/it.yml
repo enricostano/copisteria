@@ -8,6 +8,10 @@ it:
   phone: Telefono
   new_model: aggiungi %{model}
   are_you_sure: Sei sicuro/a?
+  client: cliente
+  number: numero
+  date: data
+  amount: importo
 
   activerecord:
     models:
