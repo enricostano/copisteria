@@ -8,6 +8,7 @@ it:
   name: Nome
   phone: Telefono
   new_model: aggiungi %{model}
+  model_index: elenco %{model}
   are_you_sure: Sei sicuro/a?
   client: cliente
   number: numero

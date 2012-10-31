@@ -1,27 +1,27 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b><%=t :name %></b>
   <%= @project.name %>
 </p>
 
 <p>
-  <b>Institution:</b>
+  <b><%=t 'activerecord.institution' %></b>
   <%= @project.institution.name %>
 </p>
 
 <p>
-  <b>Start:</b>
+  <b><%=t :start %></b>
   <%= @project.start %>
 </p>
 
 <p>
-  <b>Stop:</b>
+  <b><%=t :stop %></b>
   <%= @project.stop %>
 </p>
 
 <p>
-  <b>Prezzo:</b>
+<b><%=t :price %></b>
   <%= number_to_currency(@project.price, :unit => "€") %>
 </p>
 
@@ -36,8 +36,8 @@
 <% end %>
 
 <% if current_user.any_role? :super_admin, :admin %>
-  <%= link_to 'Modifica', edit_project_path(@project) %> |
-  <%= link_to 'Elenco progetti', projects_path %>
+  <%= link_to t(:edit), edit_project_path(@project) %> |
+  <%= link_to t(:model_index, :model => Project.model_name.human), projects_path %>
 <% else %>
   <%= button_to 'Aggiungi al carrello', add_cart_path(@project) %>
 <% end %>
