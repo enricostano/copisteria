@@ -1,11 +1,12 @@
 it:
   dashboard: Pannello di controllo
+  back: indietro
   show: mostra
   edit: modifica
   destroy: elimina
   name: Nome
   phone: Telefono
-  new_model: nuovo %{model}
+  new_model: aggiungi %{model}
   are_you_sure: Sei sicuro/a?
 
   activerecord:
