@@ -2,8 +2,8 @@
    <table class="orders">
       <tr>
         <td class="legend">n.</td>
-        <td class="legend">data</td>
-        <td class="legend">importo</td>
+        <td class="legend"><%=t :date %></td>
+        <td class="legend"><%=t :amount %></td>
       </tr>
       <% @orders_by_user.each do |order| %>
         <tr>

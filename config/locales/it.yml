@@ -32,3 +32,8 @@ it:
               blank: "deve essere presente"
             email:
               blank: "deve essere presente"
+
+  devise:
+    sessions:
+      user:
+        signed_in: "Autenticazione eseguita con successo."
