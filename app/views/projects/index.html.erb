@@ -1,4 +1,4 @@
-<h1>Listing projects</h1>
+<h1>Elenco progetti</h1>
 
 <table>
   <tr>
@@ -19,13 +19,13 @@
     <td><%= project.start %></td>
     <td><%= project.stop %></td>
     <td><%= number_to_currency(project.price, :unit => "€") %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to t(:show), project %></td>
+    <td><%= link_to t(:edit), edit_project_path(project) %></td>
+    <td><%= link_to t(:destroy), project, method: :delete, data: { confirm: t(:are_you_sure) } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to t(:new_model, :model => Project.model_name.human), new_project_path %>
