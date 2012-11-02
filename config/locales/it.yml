@@ -1,33 +1,35 @@
 it:
   dashboard: Pannello di controllo
-  back: indietro
-  show: mostra
-  edit: modifica
-  destroy: elimina
-  authorize: autorizza
+  back: Indietro
+  show: Mostra
+  edit: Modifica
+  destroy: Elimina
+  authorize: Autorizza
   name: Nome
   phone: Telefono
-  new_model: aggiungi %{model}
-  model_index: elenco %{model}
+  new_model: Aggiungi %{model}
+  model_index: Elenco %{model}
   are_you_sure: Sei sicuro/a?
-  client: cliente
-  number: numero
-  date: data
-  amount: importo
-  price: prezzo
-  start: inizio
-  stop: fine
+  client: Cliente
+  number: Numero
+  date: Data
+  amount: Importo
+  price: Prezzo
+  start: Inizio
+  stop: Fine
 
   activerecord:
     models:
-      institution: ente
-      order: ordine
-      project: progetto
-      user: utente
+      institution: Ente
+      order: Ordine
+      project:
+        one: Progetto
+        other: Progetti
+      user: Utente
     attributes:
       institution:
-        name: nome
-        phone: telefono
+        name: Nome
+        phone: Telefono
     errors:
       one: "1 errore impedisce di salvare"
       other: "%{count} errori impediscono di salvare"
