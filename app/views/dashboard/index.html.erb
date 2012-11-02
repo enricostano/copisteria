@@ -4,8 +4,8 @@
     <h2>Progetti attivi</h2>
     <%= render 'projects/nextbyinstitution' %>
     <% if current_user.any_role? :super_admin, :admin %>
-      <%= link_to 'Elenco progetti', projects_path %> |
-      <%= link_to 'Nuovo progetto', new_project_path %>
+      <%= link_to t('model_index.projects'), projects_path %> |
+      <%= link_to t('model_new.project'), new_project_path %>
     <% end %>
   </div>
 </div>
@@ -14,15 +14,15 @@
     <div class="div_interno" id="latest_downloads">
       <h2>Ultimi 10 ordini</h2>
       <%= render 'orders/order_list' %>
-      <%= link_to 'Elenco ordini', orders_path %>
+      <%= link_to t('model_index.orders'), orders_path %>
     </div>
     <div class="div_interno" id="users_buttons">
-      <%= link_to 'Elenco utenti', users_path %> |
-      <%= link_to 'Nuovo utente', new_user_path %>
+      <%= link_to t('model_index.users'), users_path %> |
+      <%= link_to t('model_new.user'), new_user_path %>
     </div>
     <div class="div_interno" id="institutions_buttons">
-      <%= link_to 'Elenco enti', institutions_path %> |
-      <%= link_to 'Nuovo ente', new_institution_path %>
+      <%= link_to t('model_index.institutions'), institutions_path %> |
+      <%= link_to t('model_new.institution'), new_institution_path %>
     </div>
   <% else %>
     <div class="div_interno" id="user_cart">

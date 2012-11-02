@@ -54,6 +54,12 @@ it:
     institutions: Elenco enti
     orders: Elenco ordini
 
+  model_new:
+    project: Nuovo progetto
+    user: Nuovo utente
+    institution: Nuovo ente
+    order: Nuovo ordine
+
   devise:
     sessions:
       user:
