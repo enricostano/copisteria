@@ -7,7 +7,6 @@ it:
   authorize: Autorizza
   name: Nome
   phone: Telefono
-  new_model: Aggiungi %{model}
   are_you_sure: Sei sicuro/a?
   client: Cliente
   number: Numero
