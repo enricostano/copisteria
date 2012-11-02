@@ -37,7 +37,7 @@
 
 <% if current_user.any_role? :super_admin, :admin %>
   <%= link_to t(:edit), edit_project_path(@project) %> |
-  <%= link_to t(:model_index, :model => t('activerecord.models.project', :count => 2)), projects_path %>
+  <%= link_to t('model_index.projects'), projects_path %>
 <% else %>
   <%= button_to 'Aggiungi al carrello', add_cart_path(@project) %>
 <% end %>

@@ -8,7 +8,6 @@ it:
   name: Nome
   phone: Telefono
   new_model: Aggiungi %{model}
-  model_index: Elenco %{model}
   are_you_sure: Sei sicuro/a?
   client: Cliente
   number: Numero
@@ -48,6 +47,10 @@ it:
               blank: "deve essere presente"
             email:
               blank: "deve essere presente"
+
+  model_index:
+    projects: Elenco progetti
+    users: Elenco utenti
 
   devise:
     sessions:
