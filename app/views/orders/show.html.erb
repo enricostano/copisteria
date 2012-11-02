@@ -33,4 +33,4 @@
   <%= link_to t(:edit), edit_order_path(@order) %>  |
   <%= link_to t(:authorize), authorize_order_path(@order), data: { confirm: 'Autorizzo questo ordine?' } if !@order.authorized %>
 <% end %>
-<%= link_to t(:dashboard), dashboard_path %>
+<%= link_to t('model_index.orders'), orders_path %>
