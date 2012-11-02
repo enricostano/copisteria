@@ -64,17 +64,3 @@ it:
     sessions:
       user:
         signed_in: "Autenticazione eseguita con successo."
-
-  helpers:
-    submit:
-      create: "Crea %{model}"
-      update: "Modifica %{model}"
-      submit: "Salva %{model}"
-
-  date:
-    month_names: [~, Gennaio, Febbraio, Marzo, Aprile, Maggio, Giugno, Luglio, Agosto, Settembre, Ottobre, Novembre, Dicembre]
-    abbr_month_names: [~, Gen, Feb, Mar, Apr, Mag, Giu, Lug, Ago, Set, Ott, Nov, Dic]
-    order:
-      - :day
-      - :month
-      - :year
