@@ -51,6 +51,8 @@ it:
   model_index:
     projects: Elenco progetti
     users: Elenco utenti
+    institutions: Elenco enti
+    orders: Elenco ordini
 
   devise:
     sessions:
