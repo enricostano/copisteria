@@ -10,7 +10,6 @@ it:
   are_you_sure: Sei sicuro/a?
   client: Cliente
   number: Numero
-  date: Data
   amount: Importo
   price: Prezzo
   start: Inizio
@@ -63,3 +62,9 @@ it:
     sessions:
       user:
         signed_in: "Autenticazione eseguita con successo."
+
+  date:
+    order:
+    - :day
+    - :month
+    - :year
