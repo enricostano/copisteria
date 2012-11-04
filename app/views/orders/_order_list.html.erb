@@ -14,7 +14,7 @@
   <% end %>
       <td><%= link_to order.user.email, user_path(order.user) %></td>
       <td><%= link_to order.id, order_path(order) %></td>
-      <td><%= order.created_at.strftime("%d %B %Y") %></td>
+      <td><%=l order.created_at, :format => :short %></td>
       <td><%= number_to_currency(order.line_items.sum(:price), :unit => "€") %></td>
       <td><%= link_to t(:show), order %></td>
       <td><%= link_to t(:edit), edit_order_path(order) %></td>
