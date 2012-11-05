@@ -23,6 +23,9 @@ describe Project do
   it "is invalid if start date is after or same day than stop date" do
     FactoryGirl.build(:project, stop: '01-01-2012').should_not be_valid
   end
+  it "is invalid with a price that it isn't a number" do
+    FactoryGirl.build(:project, price: '12 euro').should_not be_valid
+  end
   it "return a collection of active project grouped by institutions" do
     institutionA = FactoryGirl.create(:institution, name: 'Comune di Manduria')
     institutionB = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
