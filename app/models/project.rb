@@ -5,7 +5,7 @@ class Project < ActiveRecord::Base
   has_many :line_items
   before_destroy :ensure_not_referenced_by_any_line_item
   validates :name, :start, :stop, :institution, :price, :presence => true
-  validates :price, :numericality => { :only_integer => true }
+  validates :price, :numericality => true
   validate :start_before_stop_date
 
   
