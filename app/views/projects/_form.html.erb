@@ -19,11 +19,11 @@
     <%= f.collection_select(:institution_id, Institution.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label t(:start) %><br />
+    <%= f.label t('activerecord.attributes.project.start') %><br />
     <%= f.date_select :start %>
   </div>
   <div class="field">
-    <%= f.label t(:stop) %><br />
+    <%= f.label t('activerecord.attributes.project.stop') %><br />
     <%= f.date_select :stop %>
   </div>
   <div class="field">

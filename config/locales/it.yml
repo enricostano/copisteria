@@ -12,8 +12,6 @@ it:
   number: Numero
   amount: Importo
   price: Prezzo
-  start: Inizio
-  stop: Fine
 
   activerecord:
     models:
@@ -27,6 +25,9 @@ it:
       institution:
         name: Nome
         phone: Telefono
+      project:
+        start: Inizio
+        stop: Fine
     errors:
       one: "1 errore impedisce di salvare"
       other: "%{count} errori impediscono di salvare"
@@ -62,9 +63,3 @@ it:
     sessions:
       user:
         signed_in: "Autenticazione eseguita con successo."
-
-  date:
-    order:
-    - :day
-    - :month
-    - :year
