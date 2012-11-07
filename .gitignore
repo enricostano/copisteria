@@ -22,4 +22,4 @@ Capfile
 /config/deploy.rb
 
 # Ignore database.yml
-/config/database.yml
+/config/database.mysql.yml
