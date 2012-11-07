@@ -13,3 +13,11 @@ test:
   pool: 5
   username: enrico
   password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: copisteria
+  pool: 5
+  username: enrico
+  password:
