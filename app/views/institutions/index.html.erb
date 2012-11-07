@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th><%=t :name %></th>
+    <th><%=t :contact %></th>
     <th><%=t :phone %></th>
     <th>Email</th>
     <th></th>
@@ -13,6 +14,7 @@
 <% @institutions.each do |institution| %>
   <tr>
     <td><%= institution.name %></td>
+    <td><%= institution.contact %></td>
     <td><%= institution.phone %></td>
     <td><%= institution.email %></td>
     <td><%= link_to t(:show), institution %></td>
