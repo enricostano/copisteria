@@ -60,7 +60,6 @@ describe OrdersController do
     end
 
     describe "POST #create" do
-
       
       before(:each) do
         session[:cart] = { "1" => "1" }

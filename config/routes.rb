@@ -20,7 +20,7 @@ Copisteria2::Application.routes.draw do
 
   resources :institutions
 
-  devise_for :users #, :controllers => { :registrations => "users" }
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   scope "/admin" do
     resources :users
