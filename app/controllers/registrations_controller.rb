@@ -1,8 +1,10 @@
 # app/controllers/registrations_controller.rb
 class RegistrationsController < Devise::RegistrationsController
 
-  def after_sign_up_path_for(resource)
-    render
+  protected
+
+  def after_inactive_sign_up_path_for(resource)
+    signup_landing_path
   end
 
 end
