@@ -13,5 +13,9 @@ FactoryGirl.define do
     ragionesociale        'Stano s.a.s. di Stano Rita & C.'
     partitaiva
     cap                   '12345'
+
+    trait :confirmed do
+      before(:create) { |user| user.skip_confirmation! }
+    end
   end
 end
