@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108143241) do
+ActiveRecord::Schema.define(:version => 20121109155830) do
 
   create_table "institutions", :force => true do |t|
     t.string   "name",       :null => false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20121108143241) do
 
   create_table "line_items", :force => true do |t|
     t.integer  "order_id",                                 :null => false
-    t.integer  "project_id",                               :null => false
+    t.integer  "tender_id",                                :null => false
     t.integer  "quantity",                                 :null => false
     t.decimal  "price",      :precision => 8, :scale => 2, :null => false
     t.datetime "created_at",                               :null => false
@@ -38,17 +38,6 @@ ActiveRecord::Schema.define(:version => 20121108143241) do
     t.boolean  "authorized", :default => false
   end
 
-  create_table "projects", :force => true do |t|
-    t.string   "name",                                         :null => false
-    t.integer  "institution_id",                               :null => false
-    t.date     "start",                                        :null => false
-    t.date     "stop",                                         :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.string   "file_uid"
-    t.decimal  "price",          :precision => 8, :scale => 2, :null => false
-  end
-
   create_table "roles", :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at", :null => false
@@ -60,6 +49,17 @@ ActiveRecord::Schema.define(:version => 20121108143241) do
   create_table "roles_users", :id => false, :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
+  end
+
+  create_table "tenders", :force => true do |t|
+    t.string   "name",                                         :null => false
+    t.integer  "institution_id",                               :null => false
+    t.date     "start",                                        :null => false
+    t.date     "stop",                                         :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.string   "file_uid"
+    t.decimal  "price",          :precision => 8, :scale => 2, :null => false
   end
 
   create_table "url_connectors", :force => true do |t|
