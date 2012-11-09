@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 <div id="left_dashboard_column">
-  <div class="div_interno" id="projects_by_institution">
-    <h2>Progetti attivi</h2>
-    <%= render 'projects/nextbyinstitution' %>
+  <div class="div_interno" id="tenders_by_institution">
+    <h2>Gare attive</h2>
+    <%= render 'tenders/nextbyinstitution' %>
     <% if current_user.any_role? :super_admin, :admin %>
-      <%= link_to t('model_index.projects'), projects_path %> |
-      <%= link_to t('model_new.project'), new_project_path %>
+      <%= link_to t('model_index.tenders'), tenders_path %> |
+      <%= link_to t('model_new.tender'), new_tender_path %>
     <% end %>
   </div>
 </div>
