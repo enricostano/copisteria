@@ -18,7 +18,7 @@ Copisteria2::Application.routes.draw do
 
   match "download/:temp_url" => "url_connectors#download", :as => :url_connectors_download
 
-  resources :projects
+  resources :tenders
 
   resources :institutions
 

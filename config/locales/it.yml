@@ -17,9 +17,9 @@ it:
     models:
       institution: Ente
       order: Ordine
-      project:
-        one: Progetto
-        other: Progetti
+      tender:
+        one: Gara
+        other: Gare
       user: Utente
     attributes:
       institution:
@@ -48,13 +48,13 @@ it:
               blank: "deve essere presente"
 
   model_index:
-    projects: Elenco progetti
+    tenders: Elenco gare
     users: Elenco utenti
     institutions: Elenco enti
     orders: Elenco ordini
 
   model_new:
-    project: Nuovo progetto
+    tender: Nuova gara
     user: Nuovo utente
     institution: Nuovo ente
     order: Nuovo ordine
