@@ -1,6 +1,6 @@
 Copisteria2::Application.routes.draw do
 
-  get "signup_landing_path" => "landing#signup"
+  get "signup_landing" => "landing#signup"
   
   resources :url_connectors
 
