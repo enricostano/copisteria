@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
   def index
     if user_signed_in?
-      @project_institutions = Project.nextbyinstitution
+      @tender_institutions = Tender.nextbyinstitution
       if current_user.any_role? :super_admin, :admin
 		    @orders = Order.order('created_at DESC').limit(10)
       else
