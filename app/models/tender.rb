@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Tender < ActiveRecord::Base
   attr_accessible :name, :start, :stop, :institution_id, :price, :file, :file_uid, :remove_file
   belongs_to :institution
   file_accessor :file
@@ -18,8 +18,8 @@ class Project < ActiveRecord::Base
   end
   
   def self.nextbyinstitution
-    projects = where('stop > ?', Date.today)
-    project_institutions = projects.group_by { |p| p.institution }
+    tenders = where('stop > ?', Date.today)
+    tender_institutions = tenders.group_by { |p| p.institution }
   end
 
   private

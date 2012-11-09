@@ -1,60 +1,60 @@
-# spec/models/project_spec.rb
+# spec/models/tender_spec.rb
 require 'spec_helper'
 
-describe Project do
+describe Tender do
   it "has a valid factory" do
-    FactoryGirl.create(:project).should be_valid
+    FactoryGirl.create(:tender).should be_valid
   end
   it "is invalid without a name" do
-    FactoryGirl.build(:project, name: nil).should_not be_valid
+    FactoryGirl.build(:tender, name: nil).should_not be_valid
   end
   it "is invalid without a start" do
-    FactoryGirl.build(:project, start: nil).should_not be_valid
+    FactoryGirl.build(:tender, start: nil).should_not be_valid
   end
   it "is invalid without a stop" do
-    FactoryGirl.build(:project, stop: nil).should_not be_valid
+    FactoryGirl.build(:tender, stop: nil).should_not be_valid
   end
   it "is invalid without an institution" do
-    FactoryGirl.build(:project, institution: nil).should_not be_valid
+    FactoryGirl.build(:tender, institution: nil).should_not be_valid
   end
   it "is invalid without a price" do
-    FactoryGirl.build(:project, price: nil).should_not be_valid
+    FactoryGirl.build(:tender, price: nil).should_not be_valid
   end
   it "is invalid if start date is after or same day than stop date" do
-    FactoryGirl.build(:project, stop: '01-01-2012').should_not be_valid
+    FactoryGirl.build(:tender, stop: '01-01-2012').should_not be_valid
   end
   it "is invalid with a price that it isn't a number" do
-    FactoryGirl.build(:project, price: '12 euro').should_not be_valid
+    FactoryGirl.build(:tender, price: '12 euro').should_not be_valid
   end
-  it "return a collection of active project grouped by institutions" do
+  it "return a collection of active tender grouped by institutions" do
     institutionA = FactoryGirl.create(:institution, name: 'Comune di Manduria')
     institutionB = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
-    project1 = FactoryGirl.create(:project,
-                                  name: 'project1',
+    tender1 = FactoryGirl.create(:tender,
+                                  name: 'tender1',
                                   start: Date.today - 2.week,
                                   stop: Date.today - 1.week,
                                   institution: institutionA)
-    project2 = FactoryGirl.create(:project,
-                                  name: 'project2',
+    tender2 = FactoryGirl.create(:tender,
+                                  name: 'tender2',
                                   start: Date.today - 2.week,
                                   stop: Date.today + 1.week,
                                   institution: institutionA)
-    project3 = FactoryGirl.create(:project,
-                                  name: 'project3',
+    tender3 = FactoryGirl.create(:tender,
+                                  name: 'tender3',
                                   start: Date.today - 1.week,
                                   stop: Date.today + 2.week,
                                   institution: institutionB)
-    Project.nextbyinstitution.should have(2).items
-    Project.nextbyinstitution[institutionA].first.name.should eq 'project2'
-    Project.nextbyinstitution[institutionB].first.name.should eq 'project3'
-    Project.nextbyinstitution[institutionA].first.stop.should > Date.today
-    Project.nextbyinstitution[institutionB].first.stop.should > Date.today
+    Tender.nextbyinstitution.should have(2).items
+    Tender.nextbyinstitution[institutionA].first.name.should eq 'tender2'
+    Tender.nextbyinstitution[institutionB].first.name.should eq 'tender3'
+    Tender.nextbyinstitution[institutionA].first.stop.should > Date.today
+    Tender.nextbyinstitution[institutionB].first.stop.should > Date.today
   end
   it "verify if is referred by any line_items before to be destroyed" do
     ['SuperAdmin', 'Admin', 'User'].each { |rolename| FactoryGirl.create(:role, name: rolename) }
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, :confirmed)
     institution = FactoryGirl.create(:institution, name: 'Comune di Avetrana')
-    project = FactoryGirl.create(:project,
+    tender = FactoryGirl.create(:tender,
                                  start: Date.today - 2.week,
                                  stop: Date.today + 1.week,
                                  institution: institution)
@@ -62,8 +62,8 @@ describe Project do
                                user: user)
     line_item = FactoryGirl.create(:line_item,
                                    order: order,
-                                   project: project)
-    project.destroy.should be false
+                                   tender: tender)
+    tender.destroy.should be false
   end
 
 end

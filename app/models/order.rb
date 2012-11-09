@@ -8,8 +8,8 @@ class Order < ActiveRecord::Base
 
   def add_line_items_to_order_from_cart(cart)
     cart.each do | id, quantity |
-      item = Project.find(id)
-      line_items << LineItem.new(project: item,
+      item = Tender.find(id)
+      line_items << LineItem.new(tender: item,
                                  quantity: quantity,
                                  price: item.price,
                                  order: self)

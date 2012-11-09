@@ -12,8 +12,8 @@ describe LineItem do
   it "is invalid without a order" do
     FactoryGirl.build(:line_item, order: nil).should_not be_valid
   end
-  it "is invalid without a project" do
-    FactoryGirl.build(:line_item, project: nil).should_not be_valid
+  it "is invalid without a tender" do
+    FactoryGirl.build(:line_item, tender: nil).should_not be_valid
   end
   it "is invalid without a quantity" do
     FactoryGirl.build(:line_item, quantity: nil).should_not be_valid

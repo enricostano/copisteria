@@ -12,11 +12,11 @@ class Ability
       end
     
       if user.any_role? :admin
-        can :manage, [User, Institution, Project, Order]
+        can :manage, [User, Institution, Tender, Order]
       end
     
       if user.any_role? :user
-        can :show, Project
+        can :show, Tender
         can [:add, :change], :cart
         can [:create, :show], Order, :user_id => user.id
         can :download, UrlConnector

@@ -1,6 +1,6 @@
-# spec/factories/projects.rb
+# spec/factories/tenders.rb
 FactoryGirl.define do
-  factory :project do
+  factory :tender do
     name    'Diga sul fiume Borraco'
     start   '01-01-2012'
     stop    '10-01-2012'
