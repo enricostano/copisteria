@@ -1,9 +1,9 @@
-<%= form_for(@project) do |f| %>
-  <% if @project.errors.any? %>
+<%= form_for(@tender) do |f| %>
+  <% if @tender.errors.any? %>
     <div id="error_explanation">
-      <h2><%=t 'activerecord.errors', :count => @project.errors.count %>:</h2>
+      <h2><%=t 'activerecord.errors', :count => @tender.errors.count %>:</h2>
       <ul>
-      <% @project.errors.full_messages.each do |msg| %>
+      <% @tender.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -19,11 +19,11 @@
     <%= f.collection_select(:institution_id, Institution.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label t('activerecord.attributes.project.start') %><br />
+    <%= f.label t('activerecord.attributes.tender.start') %><br />
     <%= f.date_select :start %>
   </div>
   <div class="field">
-    <%= f.label t('activerecord.attributes.project.stop') %><br />
+    <%= f.label t('activerecord.attributes.tender.stop') %><br />
     <%= f.date_select :stop %>
   </div>
   <div class="field">
@@ -31,7 +31,7 @@
     <%= f.text_field :price %>
   </div>
   <div class="field">
-    <%= render "fileproject_fields", :f => f %>
+    <%= render "filetender_fields", :f => f %>
   </div>
   <div class="actions">
     <%= f.submit %>

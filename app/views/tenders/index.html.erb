@@ -1,0 +1,31 @@
+<h1>Elenco gare</h1>
+
+<table>
+  <tr>
+    <th>Ente</th>
+    <th>Nome</th>
+    <th>Inizio</th>
+    <th>Fine</th>
+    <th>Prezzo</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tenders.each do |tender| %>
+  <tr>
+    <td><%= tender.institution.name %></td>
+    <td><%= tender.name %></td>
+    <td><%=l tender.start, :format => :short %></td>
+    <td><%=l tender.stop, :format => :short %></td>
+    <td><%= number_to_currency(tender.price, :unit => "€") %></td>
+    <td><%= link_to t(:show), tender %></td>
+    <td><%= link_to t(:edit), edit_tender_path(tender) %></td>
+    <td><%= link_to t(:destroy), tender, method: :delete, data: { confirm: t(:are_you_sure) } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to t(:new_model, :model => Tender.model_name.human), new_tender_path %>

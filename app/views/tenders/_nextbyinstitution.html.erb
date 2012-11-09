@@ -1,0 +1,11 @@
+<div class="archives">
+    <% @tender_institutions.each do |institution, tenders| %>
+    <h3><%=h institution.name %></h3>
+    <ul>
+        <% tenders.each do |tender| %>
+        <li><%=h link_to tender.name, tender_path(tender) %></li>
+        <% end %>
+    </ul>
+    <% end %>
+</div>
+

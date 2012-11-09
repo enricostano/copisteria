@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b><%=t :name %></b>
+  <%= @tender.name %>
+</p>
+
+<p>
+  <b><%=t 'activerecord.models.institution' %></b>
+  <%= @tender.institution.name %>
+</p>
+<a href="/tenders">prova</a>
+<p>
+  <b><%=t :start %></b>
+  <%= @tender.start %>
+</p>
+
+<p>
+  <b><%=t :stop %></b>
+  <%= @tender.stop %>
+</p>
+
+<p>
+<b><%=t :price %></b>
+  <%= number_to_currency(@tender.price, :unit => "€") %>
+</p>
+
+<% if current_user.any_role? :super_admin, :admin %>
+  <% if @tender.file %>
+    <p>
+      <a href="<%= @tender.file.url %>"><%= @tender.file.name %></a>
+    </p>
+  <% else %>
+    <p>Non ci sono file allegati a questa gara.</p>
+  <% end %>
+<% end %>
+
+<% if current_user.any_role? :super_admin, :admin %>
+  <%= link_to t(:edit), edit_tender_path(@tender) %> |
+  <%= link_to t('model_index.tenders'), tenders_path %>
+<% else %>
+  <%= button_to 'Aggiungi al carrello', add_cart_path(@tender) %>
+<% end %>
