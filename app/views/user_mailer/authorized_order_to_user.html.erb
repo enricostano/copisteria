@@ -14,7 +14,7 @@
     <% end %>
     <br/>
     <% @order.line_items.each do |line_item| %>
-      <%= link_to line_item.project.name, url_connectors_download_url(line_item.url_connector.temp_url) %><br/>
+      <%= link_to line_item.tender.name, url_connectors_download_url(line_item.url_connector.temp_url) %><br/>
     <% end %>
    </p>
     <p>La ringraziamo e le auguriamo buona giornata,</p>

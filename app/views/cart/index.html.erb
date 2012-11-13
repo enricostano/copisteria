@@ -6,14 +6,14 @@
 	
   <table class="cart">
       <tr>
-          <td class="legend">Progetto</td>
+          <td class="legend">Prodotto</td>
           <td class="legend">Prezzo</td>
           <td class="legend">Quantità</td>
           <td class="legend">Totale</td>
       </tr>
 
   <% @cart.each do | id, quantity | %>
-      <% item = Project.find_by_id(id) %>
+      <% item = Tender.find_by_id(id) %>
       <tr>
           <td class="title"><%= item.name %></td>
           <td class="price"><%= number_to_currency(item.price, :unit => "€") %></td>
