@@ -32,7 +32,7 @@ gem 'cloudfoundry-jquery-rails'
 # gem 'unicorn'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
 
 gem 'therubyracer'
 
