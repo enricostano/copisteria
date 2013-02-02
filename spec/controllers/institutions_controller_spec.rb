@@ -70,7 +70,7 @@ describe InstitutionsController do
       context "with valid attributes" do
         before(:each) do
           @institution.should_receive(:save).and_return(true)
-          get :create, institution: { "name" => "Comune di Puppa" }
+          post :create, institution: { "name" => "Comune di Puppa" }
         end
 
         it "assigns a new Institution to @institution with some params" do
@@ -85,7 +85,7 @@ describe InstitutionsController do
       context "with invalid attributes" do
         it "render :new template" do
           @institution.should_receive(:save).and_return(false)
-          get :create, institution: { "name" => "Comune di Puppa" }
+          post :create, institution: { "name" => "Comune di Puppa" }
           response.should render_template :new
         end
       end
@@ -101,7 +101,7 @@ describe InstitutionsController do
       context "with valid parameters" do
         before(:each) do
           @institution.should_receive(:update_attributes).with("name" => "Comune di Puppa").and_return(true)
-          get :update, id: "1", institution: { "name" => "Comune di Puppa" }
+          put :update, id: "1", institution: { "name" => "Comune di Puppa" }
         end
 
         it "assigns the requested institution to @institution" do
@@ -116,7 +116,7 @@ describe InstitutionsController do
       context "with invalid parameters" do
         it "renders de :edit template" do
           @institution.should_receive(:update_attributes).with("name" => "Comune di Puppa").and_return(false)
-          get :update, id: "1", institution: { "name" => "Comune di Puppa" }
+          put :update, id: "1", institution: { "name" => "Comune di Puppa" }
           response.should render_template :edit
         end
       end
@@ -128,7 +128,7 @@ describe InstitutionsController do
         should_authorize(:destroy, @institution)
         Institution.should_receive(:find).with("1").and_return(@institution)
         @institution.should_receive(:destroy).and_return(true)
-        get :destroy, id: "1"
+        delete :destroy, id: "1"
       end
         
       it "assigns the requested institution to @institution" do

@@ -64,6 +64,7 @@ describe OrdersController do
       before(:each) do
         session[:cart] = { "1" => "1" }
         controller.stub!(:current_user).and_return(user)
+        user.should_receive(:any_role?).with(:super_admin).and_return(true)
         should_authorize(:create, order)
         Order.should_receive(:new).and_return(order)
       end
@@ -72,7 +73,11 @@ describe OrdersController do
         before(:each) do
           order.should_receive(:add_line_items_to_order_from_cart).with("1" => "1").and_return(true)
           order.should_receive(:save).and_return(true)
-          get :create
+          #@sender = Factory(:user)
+          #@receiver = Factory(:user)
+          mailer = double
+          UserMailer.should_receive(:order_created_to_admin).with(an_instance_of(Fixnum), user.id, user.id).and_return(mailer)
+          post :create
         end
 
         it "assigns a new Order to @order with some params" do
@@ -91,7 +96,7 @@ describe OrdersController do
       context "with invalid attributes" do
         before(:each) do
           order.should_receive(:save).and_return(false)
-          get :create, order: { "name" => "Diga sul fiume Chidro" }
+          post :create, order: { "name" => "Diga sul fiume Chidro" }
         end
 
         it { should render_template :new }
@@ -107,7 +112,7 @@ describe OrdersController do
       context "with valid params" do
         before(:each) do
           order.should_receive(:update_attributes).with("user_id" => "1").and_return(true)
-          get :update, id: "1", order: { "user_id" => "1" }
+          put :update, id: "1", order: { "user_id" => "1" }
         end
 
         it "assigns the requested Order to @order" do
@@ -132,7 +137,7 @@ describe OrdersController do
         should_authorize(:destroy, order)
         Order.should_receive(:find).with("1").and_return(order)
         order.should_receive(:destroy).and_return(false)
-        get :destroy, id: "1"
+        delete :destroy, id: "1"
       end
         
       it "assigns the requested Order to @order" do
