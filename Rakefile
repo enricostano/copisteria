@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Copisteria2::Application.load_tasks
+Copisteria::Application.load_tasks

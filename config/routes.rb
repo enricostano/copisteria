@@ -1,4 +1,4 @@
-Copisteria2::Application.routes.draw do
+Copisteria::Application.routes.draw do
 
   get "signup_landing" => "landing#signup"
   
