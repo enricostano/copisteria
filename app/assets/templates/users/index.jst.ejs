@@ -1,0 +1,17 @@
+<!-- app/assets/templates/users/index.jst.ejs -->
+
+<h1>Users</h1>
+
+<table>
+  <tr>
+    <th>ragione sociale</th>
+    <th>email</th>
+  </tr>
+
+  <% users.each(function(model) { %>
+    <tr>
+      <td><%= model.escape('ragionesociale') %></td>
+      <td><%= model.escape('email') %></td>
+    </tr>
+  <% }); %>
+</table>
