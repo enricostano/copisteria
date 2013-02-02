@@ -23,7 +23,9 @@
     </div>
     <div class="clear">&nbsp;</div>
   </div>
-  <%= yield %>
+  <div id='content'>
+    <%= yield :javascript %>
+  </div>
   <div id="push"></div>
 </div>
 

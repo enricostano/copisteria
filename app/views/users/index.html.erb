@@ -1,44 +1,7 @@
-<h1>Listing users</h1>
+<!-- app/views/users/index.html.erb -->
 
-<table>
-  <tr>
-    <th>Email</th>
-    <th>Created at</th>
-    <th>Ragione sociale</th>
-    <th>Partita IVA</th>
-    <th>Phone</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>CAP</th>
-    <% if current_user.any_role? :super_admin %>
-      <th>Roles</th>
-    <% end %>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.email %></td>
-    <td><%= user.created_at.to_date %></td>
-    <td><%= user.ragionesociale %></td>
-    <td><%= user.partitaiva %></td>
-    <td><%= user.phone %></td>
-    <td><%= user.address %></td>
-    <td><%= user.city %></td>
-    <td><%= user.cap %></td>
-    <% if current_user.any_role? :super_admin %>
-      <td>
-        <% user.roles.each do |role| %>
-          <%= role.name %>
-        <% end %>
-      </td>
-    <% end %>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    Copisteria.initialize({ users: <%== @users.to_json %> });
+  <% end %>
+<% end -%>
