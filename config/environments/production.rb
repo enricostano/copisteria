@@ -1,4 +1,4 @@
-Copisteria2::Application.configure do
+Copisteria::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -58,7 +58,7 @@ Copisteria2::Application.configure do
     :user_name            => ENV['SMTP_USERNAME'],
     :password             => ENV['SMTP_PASSWORD'],
     :authentication       => :login}
-  
+
   # Enable threaded mode
   # config.threadsafe!
 
