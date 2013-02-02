@@ -8,8 +8,8 @@ gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.12'
 gem 'cancan'
 gem 'rails-i18n'
-#gem 'jquery-rails'
-gem 'cloudfoundry-jquery-rails'
+gem 'rails-backbone'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
