@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
       if @order.save
         #Send an email to admin
         UserMailer.order_created_to_admin(@order).deliver
-        #empy cart
+        #empty cart
         session.delete(:cart)
         
         format.html { redirect_to :dashboard, notice: "L'ordine è stato creato correttamente." }
