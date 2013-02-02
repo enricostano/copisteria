@@ -1,25 +1,15 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
-  
+  authorize_resource
+  respond_to :html, :json
+
   def index
-    # commented out because of load_and_authorize_resource
-    #@users = User.all
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    @users = User.all
   end
 
   def show
-    #@user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
-    end
+    @user = User.find(params[:id])
   end
-  
+
   # GET /admin/users/new
   # GET /admin/users/new.json
   def new
@@ -31,7 +21,7 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
-  
+
   def edit
     #@user = User.find(params[:id])
     @roles = Role.all
@@ -61,7 +51,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
-    #params[:user][:role_ids] ||= [] 
+    #params[:user][:role_ids] ||= []
     #@user = User.find(params[:id])
 
     respond_to do |format|
@@ -74,7 +64,7 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
