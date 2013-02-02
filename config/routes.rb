@@ -1,7 +1,7 @@
 Copisteria::Application.routes.draw do
 
   get "signup_landing" => "landing#signup"
-  
+
   resources :url_connectors
 
   resources :orders
@@ -11,7 +11,7 @@ Copisteria::Application.routes.draw do
   resources :line_items
 
   match "dashboard" => "dashboard#index"
-  
+
   match "cart/add/:id" => "cart#add", :as => :add_cart
 
   match "cart/change/(:id/(:quantity))" => "cart#change", :as => :change_cart
