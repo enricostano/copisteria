@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   authorize_resource
-  respond_to :html, :json
+  respond_to :json
 
   def index
-    @users = User.all
+    respond_with User.all
   end
 
   def show
-    @user = User.find(params[:id])
+    respond_with User.find(params[:id])
   end
 
   # GET /admin/users/new
