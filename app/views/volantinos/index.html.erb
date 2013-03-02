@@ -1,0 +1,27 @@
+<h1>Listing volantinos</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Start</th>
+    <th>Stop</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @volantinos.each do |volantino| %>
+  <tr>
+    <td><%= volantino.name %></td>
+    <td><%= volantino.start %></td>
+    <td><%= volantino.stop %></td>
+    <td><%= link_to 'Show', volantino %></td>
+    <td><%= link_to 'Edit', edit_volantino_path(volantino) %></td>
+    <td><%= link_to 'Destroy', volantino, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Volantino', new_volantino_path %>

@@ -1,0 +1,2 @@
+module VolantinosHelper
+end

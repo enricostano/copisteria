@@ -1,5 +1,8 @@
 Copisteria::Application.routes.draw do
 
+  resources :volantinos
+
+
   get "signup_landing" => "landing#signup"
   
   resources :url_connectors

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @volantino.name %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @volantino.start %>
+</p>
+
+<p>
+  <b>Stop:</b>
+  <%= @volantino.stop %>
+</p>
+
+
+<%= link_to 'Edit', edit_volantino_path(@volantino) %> |
+<%= link_to 'Back', volantinos_path %>

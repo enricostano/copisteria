@@ -1,0 +1,29 @@
+<%= form_for(@volantino) do |f| %>
+  <% if @volantino.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@volantino.errors.count, "error") %> prohibited this volantino from being saved:</h2>
+
+      <ul>
+      <% @volantino.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :start %><br />
+    <%= f.date_select :start %>
+  </div>
+  <div class="field">
+    <%= f.label :stop %><br />
+    <%= f.date_select :stop %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
