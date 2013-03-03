@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302144510) do
+ActiveRecord::Schema.define(:version => 20130303105226) do
 
   create_table "institutions", :force => true do |t|
     t.string   "name",       :null => false
@@ -104,8 +104,9 @@ ActiveRecord::Schema.define(:version => 20130302144510) do
     t.string   "name"
     t.date     "start"
     t.date     "stop"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "volantino_file_uid"
   end
 
 end
