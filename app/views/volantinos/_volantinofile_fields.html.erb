@@ -1,6 +1,6 @@
 <p>
   <%= @volantino.volantino_file.name unless @volantino.volantino_file.nil? %>
   <%= f.file_field :volantino_file %>
-  <%= f.check_box :remove_file %>
+  <%= f.check_box :remove_volantino_file %>
   <%= f.label :remove_file, "Rimuovi file" %>
 </p>
