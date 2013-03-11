@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
       end
       render "index"
     else
-      render "splashpage", :layout => "splashpage"
+      render "splashpage"
     end
   end
 end
