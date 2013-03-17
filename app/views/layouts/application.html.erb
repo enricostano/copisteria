@@ -13,7 +13,9 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  <title><%= content_for?(:title) ? yield(:title) : "stanosas.it | copisteria Stano" %></title>
+
+  <link href="http://www.buffetti.it/templates/buffetti_joomla/images/favicon.ico" type="image/ico" rel="icon"></link>
 
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "vendor/custom.modernizr" %>
@@ -21,8 +23,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  <div class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1><a href="#">Stano s.a.s.</a></h1>
+      </li>
+      <li class="name">
+        <h6 class="subheader">copisteria dal 1968</h6>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon">
+        <a href="#">
+          <span>Menu</span>
+        </a>
+      </li>
+    </ul>
+  </div>
   <%= yield %>
-
+  <div class="row">
+    <%= link_to "Sign in", new_user_session_path %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+  </div>
 </body>
 </html>

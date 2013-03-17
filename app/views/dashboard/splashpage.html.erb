@@ -1,49 +1,77 @@
-<div class="row">
+<div class="row white-bg">
+  <br/>
   <div class="large-8 columns">
-    <div class="div_interno" id="google_map" >
-      <div id="demoMap" style="height:250px" ></div>
-        <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
-        <script>
-          map = new OpenLayers.Map("demoMap");
-          map.addLayer(new OpenLayers.Layer.OSM());
-          var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-          var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-          var position       = new OpenLayers.LonLat(17.63377,40.38834).transform( fromProjection, toProjection);
-          var zoom           = 13;
-          map.setCenter(position, zoom );
-          var markers = new OpenLayers.Layer.Markers( "Markers" );
-          map.addLayer(markers);
-          var size = new OpenLayers.Size(21,25);
-          var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
-          var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
-          markers.addMarker(new OpenLayers.Marker(position,icon));
-          markers.addMarker(new OpenLayers.Marker(position,icon.clone()));
-        </script>
+    <div class="div_interno">
+      <h5>Nuovi colori!</h5>
+      <div class="centered">
+        <img src='/images/basic-azzurro.jpg'></img>
+        <img src='/images/basic-porpora.jpg'></img>
+        <img src='/images/basic-viola.jpg'></img>
       </div>
+      <p class="subheader">Lapsus sff d gdfg dfg df df df fdw e dds sdg gfg h ghg gh hg f gfgfg gfh g</p>
+    </div>
   </div>
   <div class="large-4 columns">
-    <div class="div_interno" id="details">
+    <div id="volantino" class="centered">
+      <h5>OFFERTE DEL MESE</h5>
       <p>
-        <h3>stanosas.it</h3><br/>
-        Via Giovanni Falcone, pal A<br/>
-        Manduria (TA)<br/>
-        Tel./Fax 099/9711333<br/>
-        info@stanosas.it
+      <a href="/pdfs/ShoppingBag_Marzo13.pdf">
+        <img src='/images/ShoppingBag_Marzo13.png'></img>
+        <br/>
+        Download (2.6MB)
+      </a>
       </p>
-      <div class="right-box">
-        ORARIO INVERNALE<br/>
-        <br/>
-        8:30 - 13:00
-        <br/>
-        16:30 - 20:00
-        <br/>
-        Sabato 8:30 - 13:00
-        <br/>
-        <br/>
-      </div>
     </div>
-    <div>
-      <%= render 'login' %>
+  </div>
+</div>
+<div class="row white-bg">
+  <br/>
+  <br/>
+</div>
+<div class="row white-bg">
+  <div class="large-4 columns centered">
+    <h5>Carta A4</h5>
+    <img src='/images/carta.jpg'></img>
+    <p>€ 2,29</p>
+  </div>
+  <div class="large-4 columns centered">
+    <h5>Carta A4</h5>
+    <img src='/images/carta.jpg'></img>
+    <p>€ 2,29</p>
+  </div>
+  <div class="large-4 columns centered">
+    <h5>COPISTERIA<br/>DIGITALE<br/>GRANDI FORMATI</h5>
+  </div>
+</div>
+<div class="row white-bg">
+  <br/>
+  <br/>
+</div>
+<div class="row gray-bg">
+  <div class="large-6 columns">
+    <div id="details" class="subheader">
+      <p>
+      Via Giovanni Falcone, pal A<br/>
+      Manduria (TA)<br/>
+      Tel./Fax 099/9711333<br/>
+      info@stanosas.it
+      </p>
+    </div>
+    <div id="orari" class="subheader">
+      <p>
+      ORARIO<br/>
+      8:30 - 13:00<br/>
+      16:30 - 20:00<br/>
+      Sabato 8:30 - 13:00
+      </p>
+    </div>
+  </div>
+  <div class="large-6 columns">
+    <div id="details" class="righted">
+    </div>
+    <div id="orari" class="righted">
+      <p>
+      </p>
     </div>
   </div>
 </div>
