@@ -16,7 +16,7 @@
 
 // We use these to control various global styles
 // $body-bg: #fff;
-$body-bg: SteelBlue;
+$body-bg: #8FBFE7;
 // $body-font-color: #222;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -149,6 +149,7 @@ $body-bg: SteelBlue;
 
 // We use these to control the border styles
 // $microformat-border-width: 1px;
+$microformat-border-width: none;
 // $microformat-border-style: solid;
 // $microformat-border-color: #ddd;
 
@@ -955,6 +956,7 @@ $body-bg: SteelBlue;
 
 // Background color for the top bar
 // $topbar-bg: #111;
+$topbar-bg: #333333;
 
 // Height and margin
 // $topbar-height: 45px;
