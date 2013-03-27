@@ -64,7 +64,7 @@
         <li class="street-address">Via Giovanni Falcone, pal A</li>
         <li class="locality">Manduria (TA)</li>
         <li class="phone">Tel./Fax 099/9711333</li>
-        <li class="email"><a href="#">info@stanosas.it</a></li>
+        <li class="email"><%= mail_to "copisteria@stanosas.it", "email", :encode => "hex" %></li>
       </ul>
       <br/>
       <ul class="vcard">
