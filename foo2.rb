@@ -1,1 +1,1 @@
-Fooobarersaaaaa
+Foo
