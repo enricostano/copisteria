@@ -5,7 +5,7 @@ gem 'pg'
 
 gem 'devise'
 gem 'rack-cache', :require => 'rack/cache'
-gem 'dragonfly', '~>0.9.12'
+gem 'dragonfly', '~>1.4.0'
 gem 'cancan'
 gem 'rails-i18n'
 #gem 'jquery-rails'
